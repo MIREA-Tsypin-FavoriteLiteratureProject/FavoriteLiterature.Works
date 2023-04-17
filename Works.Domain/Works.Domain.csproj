@@ -6,4 +6,15 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Genres\Requests\Commands" />
+      <Folder Include="Genres\Requests\Queries" />
+      <Folder Include="Genres\Responses\Commands" />
+      <Folder Include="Genres\Responses\Queries" />
+      <Folder Include="Works\Requests\Commands" />
+      <Folder Include="Works\Requests\Queries" />
+      <Folder Include="Works\Responses\Commands" />
+      <Folder Include="Works\Responses\Queries" />
+    </ItemGroup>
+
 </Project>
