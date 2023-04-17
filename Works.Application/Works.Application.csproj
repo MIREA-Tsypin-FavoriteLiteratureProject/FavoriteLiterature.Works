@@ -7,11 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Handlers\Authors" />
-      <Folder Include="Handlers\Genres" />
-      <Folder Include="Handlers\Works" />
-      <Folder Include="Mapping" />
-      <Folder Include="Validations" />
+      <Folder Include="Handlers\Genres\Commands" />
+      <Folder Include="Handlers\Genres\Queries" />
+      <Folder Include="Handlers\Works\Commands" />
+      <Folder Include="Handlers\Works\Queries" />
     </ItemGroup>
 
 </Project>
