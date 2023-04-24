@@ -22,4 +22,6 @@ public sealed class Author : BaseEntity
     /// имеющего роль - Автор
     /// </summary>
     public Guid UserId { get; set; }
+    
+    public ICollection<Work> Works { get; } = new List<Work>();
 }
