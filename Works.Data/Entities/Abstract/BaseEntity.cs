@@ -9,5 +9,5 @@ public abstract class BaseEntity
     /// <summary>
     /// Уникальный идентификатор
     /// </summary>
-    protected Guid Id { get; set; }
+    public Guid Id { get; set; }
 }
