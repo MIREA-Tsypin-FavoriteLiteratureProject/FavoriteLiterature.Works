@@ -1,6 +1,8 @@
 ﻿namespace Works.Data.Entities;
 
-public class Genre
-{
-    
-}
+/// <summary>
+/// Жанр произведения
+/// </summary>
+/// <param name="Name">Наименование жанра</param>
+/// <param name="Description">Описание жанра</param>
+public sealed record Genre(string Name, string? Description);
