@@ -1,6 +1,9 @@
 namespace Works.API.Extensions.Builder.Common;
 
-public class SwaggerExtensions
+public static class SwaggerExtensions
 {
-    
+    public static void AddSwagger(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddSwaggerGen();
+    }
 }
