@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Works.API.Extensions.Builder;
 using Works.API.Extensions.Builder.Common;
 using Works.Data;
 
@@ -11,12 +12,11 @@ if (string.IsNullOrWhiteSpace(connectionString))
     throw new Exception("Connection string is missing.");
 }
 
+builder.Services.AddControllers();
+builder.AddSwagger();
 builder.Services
     .AddDbContext<FavoriteLiteratureWorksDbContext>(options => options.UseNpgsql(connectionString));
-
-builder.Services.AddControllers();
-
-builder.AddSwagger();
+builder.AddRepositories();
 
 var app = builder.Build();
 

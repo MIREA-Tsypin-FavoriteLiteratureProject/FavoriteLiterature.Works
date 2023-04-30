@@ -1,14 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <LangVersion>11</LangVersion>
+        <TargetFramework>$(TargetFramework)</TargetFramework>
+        <LangVersion>$(LangVersion)</LangVersion>
+        <Nullable>$(Nullable)</Nullable>
+        <ImplicitUsings>$(ImplicitUsings)</ImplicitUsings>
+        <RootNamespace>FavoriteLiterature.Works.Data</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
     </ItemGroup>
 
 </Project>
