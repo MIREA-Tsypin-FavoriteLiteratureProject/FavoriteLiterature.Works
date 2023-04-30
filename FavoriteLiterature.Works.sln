@@ -9,6 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{F34189
 		.gitignore = .gitignore
 		LICENSE = LICENSE
 		README.md = README.md
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		Directory.Packages.props = Directory.Packages.props
+		global.json = global.json
+		NuGet.Config = NuGet.Config
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Works.Application", "Works.Application\Works.Application.csproj", "{F0BF1729-EB4D-48D0-AEDA-7469EE9AC90F}"
