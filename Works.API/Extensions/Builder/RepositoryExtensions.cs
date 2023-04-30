@@ -1,3 +1,4 @@
+using Works.Data.Repositories;
 using Works.Data.Repositories.Attachments;
 using Works.Data.Repositories.AttachmentTypes;
 using Works.Data.Repositories.Authors;
@@ -15,5 +16,7 @@ public static class RepositoryExtensions
         builder.Services.AddScoped<IAuthorsRepository, AuthorsRepository>();
         builder.Services.AddScoped<IGenresRepository, GenresRepository>();
         builder.Services.AddScoped<IWorksRepository, WorksRepository>();
+        
+        builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 }
