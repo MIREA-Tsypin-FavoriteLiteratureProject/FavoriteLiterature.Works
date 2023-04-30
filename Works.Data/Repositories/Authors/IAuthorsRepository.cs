@@ -1,6 +1,8 @@
-﻿namespace Works.Data.Repositories.Authors;
+﻿using Works.Data.Entities;
+using Works.Data.Repositories.Common;
 
-public interface IAuthorsRepository
+namespace Works.Data.Repositories.Authors;
+
+public interface IAuthorsRepository : IGenericRepository<Author>
 {
-    
 }
