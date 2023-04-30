@@ -6,10 +6,10 @@ namespace Works.Data.Repositories.Common;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {
-    protected readonly FavoriteLiteratureWorksDbContext _dbContext;
+    private readonly FavoriteLiteratureWorksDbContext _dbContext;
     private readonly DbSet<T> _entitySet;
 
-    public GenericRepository(FavoriteLiteratureWorksDbContext dbContext)
+    protected GenericRepository(FavoriteLiteratureWorksDbContext dbContext)
     {
         _dbContext = dbContext;
         _entitySet = _dbContext.Set<T>();
@@ -30,6 +30,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     public void Remove(T entity) 
         => _dbContext.Remove(entity);
 
-    public async Task<bool> Exists(Expression<Func<T, bool>> expression, CancellationToken cancellationToken = default) 
+    public async Task<bool> ExistsAsync(Expression<Func<T, bool>> expression, CancellationToken cancellationToken = default) 
         => await _entitySet.AnyAsync(expression, cancellationToken);
 }

@@ -1,6 +1,8 @@
-﻿namespace Works.Data.Repositories.Works;
+﻿using Works.Data.Entities;
+using Works.Data.Repositories.Common;
 
-public interface IWorksRepository
+namespace Works.Data.Repositories.Works;
+
+public interface IWorksRepository  : IGenericRepository<Work>
 {
-    
 }
