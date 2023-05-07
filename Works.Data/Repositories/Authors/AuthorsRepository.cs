@@ -1,7 +1,8 @@
-﻿using Works.Data.Entities;
-using Works.Data.Repositories.Common;
+﻿using FavoriteLiterature.Works.Data.Entities;
+using FavoriteLiterature.Works.Data.Repositories.Common;
+using Works.Data;
 
-namespace Works.Data.Repositories.Authors;
+namespace FavoriteLiterature.Works.Data.Repositories.Authors;
 
 public class AuthorsRepository : GenericRepository<Author>, IAuthorsRepository
 {

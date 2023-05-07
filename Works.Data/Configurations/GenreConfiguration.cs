@@ -1,18 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FavoriteLiterature.Works.Data.Common;
+using FavoriteLiterature.Works.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Works.Data.Common;
-using Works.Data.Entities;
 
-namespace Works.Data.Configurations;
+namespace FavoriteLiterature.Works.Data.Configurations;
 
 public sealed class GenreConfiguration : IEntityTypeConfiguration<Genre>
 {
     public void Configure(EntityTypeBuilder<Genre> builder)
-    {
-        ConfigureProperties(builder);
-    }
-
-    private static void ConfigureProperties(EntityTypeBuilder<Genre> builder)
     {
         builder.ToTable(WorksApiTables.Genres);
         builder.HasKey(x => x.Name).HasName($"{WorksApiTables.Genres}_pkey");

@@ -1,4 +1,4 @@
-namespace Works.API.Extensions.Builder.Common;
+namespace FavoriteLiterature.Works.Extensions.Builder.Common;
 
 public class AutoMapperExtensions
 {

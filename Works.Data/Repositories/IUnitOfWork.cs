@@ -1,10 +1,10 @@
-﻿using Works.Data.Repositories.Attachments;
-using Works.Data.Repositories.AttachmentTypes;
-using Works.Data.Repositories.Authors;
-using Works.Data.Repositories.Genres;
+﻿using FavoriteLiterature.Works.Data.Repositories.Attachments;
+using FavoriteLiterature.Works.Data.Repositories.AttachmentTypes;
+using FavoriteLiterature.Works.Data.Repositories.Authors;
+using FavoriteLiterature.Works.Data.Repositories.Genres;
 using Works.Data.Repositories.Works;
 
-namespace Works.Data.Repositories;
+namespace FavoriteLiterature.Works.Data.Repositories;
 
 public interface IUnitOfWork
 {

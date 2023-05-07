@@ -1,7 +1,7 @@
+using FavoriteLiterature.Works.Data;
+using FavoriteLiterature.Works.Extensions.Builder;
+using FavoriteLiterature.Works.Extensions.Builder.Common;
 using Microsoft.EntityFrameworkCore;
-using Works.API.Extensions.Builder;
-using Works.API.Extensions.Builder.Common;
-using Works.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

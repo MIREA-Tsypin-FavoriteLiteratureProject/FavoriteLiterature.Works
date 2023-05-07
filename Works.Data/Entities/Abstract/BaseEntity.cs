@@ -1,4 +1,4 @@
-﻿namespace Works.Data.Entities.Abstract;
+﻿namespace FavoriteLiterature.Works.Data.Entities.Abstract;
 
 /// <summary>
 /// Базовая сущность,
@@ -9,9 +9,9 @@ public abstract class BaseEntity
     /// <summary>
     /// Уникальный идентификатор
     /// </summary>
-    public Guid Id { get; init; }
+    public Guid Id { get; private set; }
 
-    protected BaseEntity()
+    public BaseEntity()
     {
         Id = Guid.NewGuid();
     }
