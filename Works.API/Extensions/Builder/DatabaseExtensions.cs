@@ -1,4 +1,4 @@
-namespace Works.API.Extensions.Builder;
+namespace FavoriteLiterature.Works.Extensions.Builder;
 
 public class DatabaseExtensions
 {

@@ -1,4 +1,4 @@
-namespace Works.API.Extensions;
+namespace FavoriteLiterature.Works.Extensions;
 
 public class RouteExtensions
 {

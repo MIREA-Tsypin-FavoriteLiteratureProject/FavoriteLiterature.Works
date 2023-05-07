@@ -1,4 +1,4 @@
-namespace Works.API.Controllers;
+namespace FavoriteLiterature.Works.Controllers;
 
 public class AuthorsController
 {
