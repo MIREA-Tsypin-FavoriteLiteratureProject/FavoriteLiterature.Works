@@ -1,10 +1,10 @@
 using FavoriteLiterature.Works.Data.Common;
+using FavoriteLiterature.Works.Data.Configurations.Abstract;
 using FavoriteLiterature.Works.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Works.Data.Configurations.Abstract;
 
-namespace Works.Data.Configurations;
+namespace FavoriteLiterature.Works.Data.Configurations;
 
 public sealed class AttachmentConfiguration : BaseEntityConfiguration<Attachment>
 {

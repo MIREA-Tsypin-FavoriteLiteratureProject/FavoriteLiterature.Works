@@ -3,7 +3,7 @@ using FavoriteLiterature.Works.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Works.Data.Configurations;
+namespace FavoriteLiterature.Works.Data.Configurations;
 
 public sealed class GenreConfiguration : IEntityTypeConfiguration<Genre>
 {
