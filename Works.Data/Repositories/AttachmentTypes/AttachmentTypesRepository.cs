@@ -1,8 +1,9 @@
 ﻿using System.Linq.Expressions;
+using FavoriteLiterature.Works.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using Works.Data.Entities;
+using Works.Data;
 
-namespace Works.Data.Repositories.AttachmentTypes;
+namespace FavoriteLiterature.Works.Data.Repositories.AttachmentTypes;
 
 public class AttachmentTypesRepository : IAttachmentTypesRepository
 {

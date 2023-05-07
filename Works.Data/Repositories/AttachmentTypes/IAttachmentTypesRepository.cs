@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
-using Works.Data.Entities;
+using FavoriteLiterature.Works.Data.Entities;
 
-namespace Works.Data.Repositories.AttachmentTypes;
+namespace FavoriteLiterature.Works.Data.Repositories.AttachmentTypes;
 
 public interface IAttachmentTypesRepository
 {

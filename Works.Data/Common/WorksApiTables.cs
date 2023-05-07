@@ -1,4 +1,4 @@
-﻿namespace Works.Data.Common;
+﻿namespace FavoriteLiterature.Works.Data.Common;
 
 /// <summary>
 /// Таблицы сервиса Works.API

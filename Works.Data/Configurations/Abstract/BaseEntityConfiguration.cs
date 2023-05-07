@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FavoriteLiterature.Works.Data.Entities.Abstract;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Works.Data.Entities.Abstract;
 
 namespace Works.Data.Configurations.Abstract;
 

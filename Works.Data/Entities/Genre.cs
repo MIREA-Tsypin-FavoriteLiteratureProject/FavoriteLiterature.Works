@@ -1,4 +1,4 @@
-﻿namespace Works.Data.Entities;
+﻿namespace FavoriteLiterature.Works.Data.Entities;
 
 /// <summary>
 /// Жанр произведения

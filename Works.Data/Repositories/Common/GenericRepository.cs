@@ -1,8 +1,9 @@
 ﻿using System.Linq.Expressions;
+using FavoriteLiterature.Works.Data.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
-using Works.Data.Entities.Abstract;
+using Works.Data;
 
-namespace Works.Data.Repositories.Common;
+namespace FavoriteLiterature.Works.Data.Repositories.Common;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {

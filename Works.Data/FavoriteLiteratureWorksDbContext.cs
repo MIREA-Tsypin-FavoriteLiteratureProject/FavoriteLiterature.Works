@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FavoriteLiterature.Works.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Works.Data.Configurations;
-using Works.Data.Entities;
 
-namespace Works.Data;
+namespace FavoriteLiterature.Works.Data;
 
 public sealed class FavoriteLiteratureWorksDbContext : DbContext
 {

@@ -1,6 +1,6 @@
-﻿using Works.Data.Entities.Abstract;
+﻿using FavoriteLiterature.Works.Data.Entities.Abstract;
 
-namespace Works.Data.Entities;
+namespace FavoriteLiterature.Works.Data.Entities;
 
 /// <summary>
 /// Автор

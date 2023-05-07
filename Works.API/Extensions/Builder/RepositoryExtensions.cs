@@ -1,8 +1,9 @@
+using FavoriteLiterature.Works.Data.Repositories;
+using FavoriteLiterature.Works.Data.Repositories.Attachments;
+using FavoriteLiterature.Works.Data.Repositories.AttachmentTypes;
+using FavoriteLiterature.Works.Data.Repositories.Authors;
+using FavoriteLiterature.Works.Data.Repositories.Genres;
 using Works.Data.Repositories;
-using Works.Data.Repositories.Attachments;
-using Works.Data.Repositories.AttachmentTypes;
-using Works.Data.Repositories.Authors;
-using Works.Data.Repositories.Genres;
 using Works.Data.Repositories.Works;
 
 namespace Works.API.Extensions.Builder;

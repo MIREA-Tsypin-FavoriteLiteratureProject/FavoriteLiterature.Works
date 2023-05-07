@@ -1,4 +1,4 @@
-﻿namespace Works.Data.Entities.Abstract;
+﻿namespace FavoriteLiterature.Works.Data.Entities.Abstract;
 
 /// <summary>
 /// Базовая сущность,

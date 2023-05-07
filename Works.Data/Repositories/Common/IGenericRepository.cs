@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
-using Works.Data.Entities.Abstract;
+using FavoriteLiterature.Works.Data.Entities.Abstract;
 
-namespace Works.Data.Repositories.Common;
+namespace FavoriteLiterature.Works.Data.Repositories.Common;
 
 public interface IGenericRepository<T> where T : BaseEntity
 {

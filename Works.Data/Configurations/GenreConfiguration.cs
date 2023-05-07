@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FavoriteLiterature.Works.Data.Common;
+using FavoriteLiterature.Works.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Works.Data.Common;
-using Works.Data.Entities;
 
 namespace Works.Data.Configurations;
 

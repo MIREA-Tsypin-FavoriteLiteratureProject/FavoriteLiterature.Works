@@ -1,5 +1,6 @@
-﻿using Works.Data.Entities;
-using Works.Data.Repositories.Common;
+﻿using FavoriteLiterature.Works.Data;
+using FavoriteLiterature.Works.Data.Entities;
+using FavoriteLiterature.Works.Data.Repositories.Common;
 
 namespace Works.Data.Repositories.Works;
 

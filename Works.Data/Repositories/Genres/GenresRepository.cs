@@ -1,8 +1,9 @@
 ﻿using System.Linq.Expressions;
+using FavoriteLiterature.Works.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using Works.Data.Entities;
+using Works.Data;
 
-namespace Works.Data.Repositories.Genres;
+namespace FavoriteLiterature.Works.Data.Repositories.Genres;
 
 public class GenresRepository : IGenresRepository
 {
