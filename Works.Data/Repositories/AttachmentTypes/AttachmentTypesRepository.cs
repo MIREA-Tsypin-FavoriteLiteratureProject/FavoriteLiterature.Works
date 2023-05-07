@@ -1,7 +1,6 @@
 ﻿using System.Linq.Expressions;
 using FavoriteLiterature.Works.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using Works.Data;
 
 namespace FavoriteLiterature.Works.Data.Repositories.AttachmentTypes;
 

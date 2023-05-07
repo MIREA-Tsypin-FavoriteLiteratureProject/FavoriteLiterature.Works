@@ -1,7 +1,6 @@
 ﻿using FavoriteLiterature.Works.Data.Configurations;
 using FavoriteLiterature.Works.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using Works.Data.Configurations;
 
 namespace FavoriteLiterature.Works.Data;
 
