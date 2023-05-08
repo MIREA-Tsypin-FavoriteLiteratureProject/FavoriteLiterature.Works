@@ -1,9 +1,11 @@
 <Project>
   <ItemGroup>
+    <PackageVersion Include="MediatR" Version="12.0.1" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
