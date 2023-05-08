@@ -9,8 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Genres\Requests\Queries" />
-      <Folder Include="Genres\Responses\Queries" />
       <Folder Include="Works\Requests\Commands" />
       <Folder Include="Works\Requests\Queries" />
       <Folder Include="Works\Responses\Commands" />
