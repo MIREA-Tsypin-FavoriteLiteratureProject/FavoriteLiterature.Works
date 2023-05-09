@@ -9,10 +9,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Handlers\Genres\Commands" />
       <Folder Include="Handlers\Genres\Queries" />
       <Folder Include="Handlers\Works\Commands" />
       <Folder Include="Handlers\Works\Queries" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" />
+      <PackageReference Include="MediatR" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Works.Data\Works.Data.csproj" />
+      <ProjectReference Include="..\Works.Domain\Works.Domain.csproj" />
     </ItemGroup>
 
 </Project>

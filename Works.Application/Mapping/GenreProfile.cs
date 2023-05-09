@@ -1,6 +1,13 @@
-﻿namespace Works.Application.Mapping;
+﻿using AutoMapper;
+using FavoriteLiterature.Works.Data.Entities;
+using FavoriteLiterature.Works.Domain.Genres.Requests.Commands;
 
-public class GenreProfile
+namespace FavoriteLiterature.Works.Application.Mapping;
+
+public sealed class GenreProfile : Profile
 {
-    
+    public GenreProfile()
+    {
+        CreateMap<CreateGenreCommand, Genre>();
+    }
 }
