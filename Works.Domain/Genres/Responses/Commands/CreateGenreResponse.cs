@@ -1,12 +1,9 @@
-﻿using Newtonsoft.Json;
-
-namespace FavoriteLiterature.Works.Domain.Genres.Responses.Commands;
+﻿namespace FavoriteLiterature.Works.Domain.Genres.Responses.Commands;
 
 public class CreateGenreResponse
 {
-    [JsonProperty("name")]
-    public string Name { get; }
+    public Guid Id { get; }
 
-    public CreateGenreResponse(string name)
-        => Name = name;
+    public CreateGenreResponse(Guid id)
+        => Id = id;
 }

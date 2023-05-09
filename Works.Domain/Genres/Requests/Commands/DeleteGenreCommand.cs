@@ -1,11 +1,12 @@
-﻿using MediatR;
+﻿using FavoriteLiterature.Works.Domain.Genres.Responses.Commands;
+using MediatR;
 
 namespace FavoriteLiterature.Works.Domain.Genres.Requests.Commands;
 
-public class DeleteGenreCommand : IRequest<DeleteGenreCommand>
+public class DeleteGenreCommand : IRequest<DeleteGenreResponse>
 {
-    public string Name { get; set; }
+    public Guid Id { get; set; }
 
-    public DeleteGenreCommand(string name)
-        => Name = name;
+    public DeleteGenreCommand(Guid id)
+        => Id = id;
 }

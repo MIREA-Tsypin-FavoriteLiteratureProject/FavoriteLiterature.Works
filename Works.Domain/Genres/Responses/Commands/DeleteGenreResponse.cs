@@ -1,12 +1,9 @@
-﻿using Newtonsoft.Json;
-
-namespace FavoriteLiterature.Works.Domain.Genres.Responses.Commands;
+﻿namespace FavoriteLiterature.Works.Domain.Genres.Responses.Commands;
 
 public class DeleteGenreResponse
 {
-    [JsonProperty("name")]
-    public string Name { get; }
+    public Guid Id { get; }
 
-    public DeleteGenreResponse(string name)
-        => Name = name;
+    public DeleteGenreResponse(Guid id)
+        => Id = id;
 }

@@ -1,12 +1,22 @@
-﻿namespace FavoriteLiterature.Works.Data.Entities;
+﻿using FavoriteLiterature.Works.Data.Entities.Abstract;
+
+namespace FavoriteLiterature.Works.Data.Entities;
 
 /// <summary>
 /// Жанр произведения
 /// </summary>
-/// <param name="Name">Наименование жанра</param>
-/// <param name="Description">Описание жанра</param>
-public sealed record Genre(string Name, string? Description)
+public sealed class Genre : BaseEntity
 {
+    /// <summary>
+    /// Имя жанра
+    /// </summary>
+    public string Name { get; set; } = null!;
+    
+    /// <summary>
+    /// Краткое описание
+    /// </summary>
+    public string? Description { get; set; }
+    
     /// <summary>
     /// Ссылка на работы
     /// </summary>

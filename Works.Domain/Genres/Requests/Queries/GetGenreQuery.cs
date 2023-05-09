@@ -5,8 +5,8 @@ namespace FavoriteLiterature.Works.Domain.Genres.Requests.Queries;
 
 public class GetGenreQuery : IRequest<GetGenreResponse>
 {
-    public string Name { get; }
+    public Guid Id { get; }
 
-    public GetGenreQuery(string name)
-        => Name = name;
+    public GetGenreQuery(Guid id)
+        => Id = id;
 }

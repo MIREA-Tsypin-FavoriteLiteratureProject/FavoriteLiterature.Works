@@ -1,28 +1,11 @@
-﻿using System.Linq.Expressions;
-using FavoriteLiterature.Works.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-using Works.Data;
+﻿using FavoriteLiterature.Works.Data.Entities;
+using FavoriteLiterature.Works.Data.Repositories.Common;
 
 namespace FavoriteLiterature.Works.Data.Repositories.Genres;
 
-public class GenresRepository : IGenresRepository
+public class GenresRepository : GenericRepository<Genre>, IGenresRepository
 {
-    private readonly FavoriteLiteratureWorksDbContext _dbContext;
-
-    public GenresRepository(FavoriteLiteratureWorksDbContext dbContext)
+    public GenresRepository(FavoriteLiteratureWorksDbContext dbContext) : base(dbContext)
     {
-        _dbContext = dbContext;
     }
-    
-    public Genre? Get(Expression<Func<Genre, bool>> expression)
-        => _dbContext.Genres.FirstOrDefault(expression);
-
-    public async Task<Genre?> GetAsync(Expression<Func<Genre, bool>> expression, CancellationToken cancellationToken = default) 
-        => await _dbContext.Genres.FirstOrDefaultAsync(expression, cancellationToken);
-
-    public async Task<IEnumerable<Genre>> GetAllAsync(Expression<Func<Genre, bool>> expression, CancellationToken cancellationToken = default)
-        => await _dbContext.Genres.Where(expression).ToListAsync(cancellationToken);
-
-    public async Task<bool> ExistsAsync(Expression<Func<Genre, bool>> expression, CancellationToken cancellationToken = default)
-        => await _dbContext.Genres.AnyAsync(expression, cancellationToken);
 }
