@@ -1,5 +1,7 @@
 using FavoriteLiterature.Works.Domain.Genres.Requests.Commands;
+using FavoriteLiterature.Works.Domain.Genres.Requests.Queries;
 using FavoriteLiterature.Works.Domain.Genres.Responses.Commands;
+using FavoriteLiterature.Works.Domain.Genres.Responses.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +17,10 @@ public sealed class GenresController : ControllerBase
     {
         _mediator = mediator;
     }
+
+    [HttpGet("{id:guid}")]
+    public async Task<GetGenreResponse> GetAsync(Guid id, CancellationToken cancellationToken)
+        => await _mediator.Send(new GetGenreQuery(id), cancellationToken);
 
     [HttpPost]
     public async Task<CreateGenreResponse> CreateAsync(CreateGenreCommand command, CancellationToken cancellationToken) 

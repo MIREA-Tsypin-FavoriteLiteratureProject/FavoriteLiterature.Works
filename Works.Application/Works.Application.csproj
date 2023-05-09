@@ -9,7 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Handlers\Genres\Queries" />
       <Folder Include="Handlers\Works\Commands" />
       <Folder Include="Handlers\Works\Queries" />
     </ItemGroup>
