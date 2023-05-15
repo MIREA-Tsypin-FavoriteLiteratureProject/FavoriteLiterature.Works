@@ -1,6 +1,18 @@
-﻿namespace Works.Application.Mapping;
+﻿using AutoMapper;
+using FavoriteLiterature.Works.Data.Entities;
+using FavoriteLiterature.Works.Domain.Genres.Requests.Commands;
+using FavoriteLiterature.Works.Domain.Genres.Responses.Queries;
 
-public class GenreProfile
+namespace FavoriteLiterature.Works.Application.Mapping;
+
+public sealed class GenreProfile : Profile
 {
-    
+    public GenreProfile()
+    {
+        CreateMap<Genre, GetGenreResponse>();
+        CreateMap<Genre, GetAllGenresItemResponse>();
+        
+        CreateMap<CreateGenreCommand, Genre>();
+        CreateMap<UpdateGenreCommand, Genre>();
+    }
 }

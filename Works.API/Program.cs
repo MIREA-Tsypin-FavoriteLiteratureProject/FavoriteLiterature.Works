@@ -13,10 +13,11 @@ if (string.IsNullOrWhiteSpace(connectionString))
 }
 
 builder.Services.AddControllers();
+builder.Services.AddDbContext<FavoriteLiteratureWorksDbContext>(options => options.UseNpgsql(connectionString));
 builder.AddSwagger();
-builder.Services
-    .AddDbContext<FavoriteLiteratureWorksDbContext>(options => options.UseNpgsql(connectionString));
 builder.AddRepositories();
+builder.AddMediatr();
+builder.AddAutoMapper();
 
 var app = builder.Build();
 

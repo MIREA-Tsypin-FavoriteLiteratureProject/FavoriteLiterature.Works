@@ -15,12 +15,15 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="MediatR" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
       <PackageReference Include="Swashbuckle.AspNetCore" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Works.Application\Works.Application.csproj" />
       <ProjectReference Include="..\Works.Data\Works.Data.csproj" />
+      <ProjectReference Include="..\Works.Domain\Works.Domain.csproj" />
     </ItemGroup>
 
 </Project>

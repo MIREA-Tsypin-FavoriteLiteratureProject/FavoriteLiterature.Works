@@ -1,6 +1,6 @@
-﻿namespace Works.Application.Mapping;
+﻿namespace FavoriteLiterature.Works.Application.Mapping;
 
-public class AuthorProfile
+public sealed class AuthorProfile
 {
     
 }
