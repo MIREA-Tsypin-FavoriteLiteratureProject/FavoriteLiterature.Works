@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FavoriteLiterature.Works.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public sealed class GenresController : ControllerBase
 {
     private readonly IMediator _mediator;
