@@ -17,8 +17,10 @@ public static class MediatrExtensions
         #region Genre
         
         builder.Services.AddTransient<IRequestHandler<GetGenreQuery, GetGenreResponse>, GetGenreQueryHandler>();
-        
+        builder.Services.AddTransient<IRequestHandler<GetAllGenresQuery, GetAllGenresResponse>, GetAllGenresQueryHandler>();
         builder.Services.AddTransient<IRequestHandler<CreateGenreCommand, CreateGenreResponse>, CreateGenreCommandHandler>();
+        builder.Services.AddTransient<IRequestHandler<UpdateGenreCommand, UpdateGenreResponse>, UpdateGenreCommandHandler>();
+        builder.Services.AddTransient<IRequestHandler<DeleteGenreCommand, DeleteGenreResponse>, DeleteGenreCommandHandler>();
 
         #endregion
     }

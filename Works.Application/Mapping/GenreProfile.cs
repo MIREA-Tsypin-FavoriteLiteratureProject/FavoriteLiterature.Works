@@ -10,7 +10,9 @@ public sealed class GenreProfile : Profile
     public GenreProfile()
     {
         CreateMap<Genre, GetGenreResponse>();
+        CreateMap<Genre, GetAllGenresItemResponse>();
         
         CreateMap<CreateGenreCommand, Genre>();
+        CreateMap<UpdateGenreCommand, Genre>();
     }
 }
