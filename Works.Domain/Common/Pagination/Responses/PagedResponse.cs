@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace FavoriteLiterature.Works.Domain.Common.Pagination.Responses;
+﻿namespace FavoriteLiterature.Works.Domain.Common.Pagination.Responses;
 
 public abstract class PagedResponse<T>
 {
@@ -9,6 +7,5 @@ public abstract class PagedResponse<T>
         Items = items;
     }
 
-    [JsonProperty("items")]
     public IEnumerable<T> Items { get; }
 }
