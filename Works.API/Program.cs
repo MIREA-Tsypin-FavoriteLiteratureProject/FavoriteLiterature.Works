@@ -29,5 +29,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseExceptionHandlingMiddleware();
 app.MapControllers();
 app.Run();
