@@ -66,8 +66,15 @@ public class RabbitMqService : BackgroundService
             }
             else
             {
-                await mediator.Send(request, cancellationToken);
-                _channel.BasicAck(eventArgs.DeliveryTag, false);
+                try
+                {
+                    await mediator.Send(request, cancellationToken);
+                    _channel.BasicAck(eventArgs.DeliveryTag, false);
+                }
+                catch (Exception exception)
+                {
+                    _channel.BasicReject(eventArgs.DeliveryTag, false);
+                }
             }
         };
 
