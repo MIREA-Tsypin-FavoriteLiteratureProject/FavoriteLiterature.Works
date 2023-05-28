@@ -7,15 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FavoriteLiterature.Works.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public sealed class GenresController : ControllerBase
+public sealed class GenresController : BaseApiController
 {
-    private readonly IMediator _mediator;
-
-    public GenresController(IMediator mediator)
+    public GenresController(IMediator mediator) : base(mediator)
     {
-        _mediator = mediator;
     }
 
     [HttpGet]
