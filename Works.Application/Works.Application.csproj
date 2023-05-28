@@ -9,18 +9,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Handlers\Works\Commands" />
       <Folder Include="Handlers\Works\Queries" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="AutoMapper" />
       <PackageReference Include="MediatR" />
+      <PackageReference Include="RabbitMQ.Client" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Works.Data\Works.Data.csproj" />
       <ProjectReference Include="..\Works.Domain\Works.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\7.0.1\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

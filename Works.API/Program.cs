@@ -15,6 +15,7 @@ if (string.IsNullOrWhiteSpace(connectionString))
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<FavoriteLiteratureWorksDbContext>(options => options.UseNpgsql(connectionString));
+builder.AddRabbitMqSubscriber();
 builder.AddSwagger();
 builder.AddRepositories();
 builder.AddMediatr();
