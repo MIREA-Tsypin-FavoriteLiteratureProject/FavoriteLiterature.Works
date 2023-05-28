@@ -1,4 +1,5 @@
 using FavoriteLiterature.Works.Data;
+using FavoriteLiterature.Works.Extensions;
 using FavoriteLiterature.Works.Extensions.Builder;
 using FavoriteLiterature.Works.Extensions.Builder.Common;
 using Microsoft.EntityFrameworkCore;
@@ -18,14 +19,13 @@ builder.AddSwagger();
 builder.AddRepositories();
 builder.AddMediatr();
 builder.AddAutoMapper();
+builder.AddNormalizeRoute();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
+app.UseExceptionHandlingMiddleware();
 app.MapControllers();
 app.Run();
