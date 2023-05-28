@@ -19,8 +19,8 @@ public class AttachmentTypesRepository : IAttachmentTypesRepository
     public async Task<AttachmentType?> GetAsync(Expression<Func<AttachmentType, bool>> expression, CancellationToken cancellationToken = default) 
         => await _dbContext.AttachmentTypes.FirstOrDefaultAsync(expression, cancellationToken);
 
-    public async Task<IEnumerable<AttachmentType>> GetAllAsync(Expression<Func<AttachmentType, bool>> expression, CancellationToken cancellationToken = default)
-        => await _dbContext.AttachmentTypes.Where(expression).ToListAsync(cancellationToken);
+    public async Task<IEnumerable<AttachmentType>> GetAllAsync(int skip, int take, CancellationToken cancellationToken = default)
+        => await _dbContext.AttachmentTypes.Skip(skip).Take(take).ToListAsync(cancellationToken);
 
     public async Task<bool> ExistsAsync(Expression<Func<AttachmentType, bool>> expression, CancellationToken cancellationToken = default)
         => await _dbContext.AttachmentTypes.AnyAsync(expression, cancellationToken);

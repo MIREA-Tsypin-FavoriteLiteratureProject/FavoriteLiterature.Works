@@ -1,6 +1,9 @@
+using FavoriteLiterature.Works.Application.Handlers.AttachmentTypes.Queries;
 using FavoriteLiterature.Works.Application.Handlers.Genres.Commands;
 using FavoriteLiterature.Works.Application.Handlers.Genres.Queries;
 using FavoriteLiterature.Works.Application.Handlers.Works.Commands;
+using FavoriteLiterature.Works.Domain.AttachmentTypes.Requests.Queries;
+using FavoriteLiterature.Works.Domain.AttachmentTypes.Responses.Queries;
 using FavoriteLiterature.Works.Domain.Genres.Requests.Commands;
 using FavoriteLiterature.Works.Domain.Genres.Requests.Queries;
 using FavoriteLiterature.Works.Domain.Genres.Responses.Commands;
@@ -16,6 +19,12 @@ public static class MediatrExtensions
     {
         builder.Services.AddMediatR(_ => _.RegisterServicesFromAssemblies(typeof(Program).Assembly));
 
+        #region AttachmentType
+
+        builder.Services.AddTransient<IRequestHandler<GetAllAttachmentTypesQuery, GetAllAttachmentTypesResponse>, GetAllAttachmentTypesQueryHandler>();
+
+        #endregion
+        
         #region Genre
         
         builder.Services.AddTransient<IRequestHandler<GetGenreQuery, GetGenreResponse>, GetGenreQueryHandler>();
