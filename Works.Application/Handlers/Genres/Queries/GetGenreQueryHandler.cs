@@ -11,7 +11,6 @@ public sealed class GetGenreQueryHandler : IRequestHandler<GetGenreQuery, GetGen
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-
     public GetGenreQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
@@ -20,8 +19,8 @@ public sealed class GetGenreQueryHandler : IRequestHandler<GetGenreQuery, GetGen
 
     public async Task<GetGenreResponse> Handle(GetGenreQuery query, CancellationToken cancellationToken)
     {
-        var genreData = await _unitOfWork.GenresRepository.GetAsync(genre =>
-                genre.Id == query.Id,
+        var genreData = await _unitOfWork.GenresRepository.GetAsync(x =>
+                x.Id == query.Id,
             cancellationToken);
 
         return _mapper.Map<GetGenreResponse>(genreData);
