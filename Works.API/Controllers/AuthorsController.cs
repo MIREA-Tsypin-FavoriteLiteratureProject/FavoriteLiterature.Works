@@ -1,5 +1,7 @@
 using FavoriteLiterature.Works.Domain.Authors.Requests.Commands;
+using FavoriteLiterature.Works.Domain.Authors.Requests.Queries;
 using FavoriteLiterature.Works.Domain.Authors.Responses.Commands;
+using FavoriteLiterature.Works.Domain.Authors.Responses.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +12,10 @@ public sealed class AuthorsController : BaseApiController
     public AuthorsController(IMediator mediator) : base(mediator)
     {
     }
+
+    [HttpGet]
+    public async Task<GetAllAuthorsResponse> GetAllAsync([FromQuery] GetAllAuthorsQuery query, CancellationToken cancellationToken)
+        => await _mediator.Send(query, cancellationToken);
 
     [HttpPost]
     public async Task<CreateAuthorResponse> CreateAsync(CreateAuthorCommand command, CancellationToken cancellationToken)
