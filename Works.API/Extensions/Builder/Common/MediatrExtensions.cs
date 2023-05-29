@@ -1,9 +1,12 @@
 using FavoriteLiterature.Works.Application.Handlers.AttachmentTypes.Queries;
+using FavoriteLiterature.Works.Application.Handlers.Authors.Commands;
 using FavoriteLiterature.Works.Application.Handlers.Genres.Commands;
 using FavoriteLiterature.Works.Application.Handlers.Genres.Queries;
 using FavoriteLiterature.Works.Application.Handlers.Works.Commands;
 using FavoriteLiterature.Works.Domain.AttachmentTypes.Requests.Queries;
 using FavoriteLiterature.Works.Domain.AttachmentTypes.Responses.Queries;
+using FavoriteLiterature.Works.Domain.Authors.Requests.Commands;
+using FavoriteLiterature.Works.Domain.Authors.Responses.Commands;
 using FavoriteLiterature.Works.Domain.Genres.Requests.Commands;
 using FavoriteLiterature.Works.Domain.Genres.Requests.Queries;
 using FavoriteLiterature.Works.Domain.Genres.Responses.Commands;
@@ -22,6 +25,12 @@ public static class MediatrExtensions
         #region AttachmentType
 
         builder.Services.AddTransient<IRequestHandler<GetAllAttachmentTypesQuery, GetAllAttachmentTypesResponse>, GetAllAttachmentTypesQueryHandler>();
+
+        #endregion
+
+        #region Author
+
+        builder.Services.AddTransient<IRequestHandler<CreateAuthorCommand, CreateAuthorResponse>, CreateAuthorCommandHandler>();
 
         #endregion
         
