@@ -14,8 +14,8 @@ public sealed class DeleteGenreCommandHandler : IRequestHandler<DeleteGenreComma
 
     public async Task<DeleteGenreResponse> Handle(DeleteGenreCommand command, CancellationToken cancellationToken)
     {
-        var genreData = await _unitOfWork.GenresRepository.GetAsync(genre =>
-                genre.Id == command.Id,
+        var genreData = await _unitOfWork.GenresRepository.GetAsync(x =>
+                x.Id == command.Id,
             cancellationToken);
         if (genreData == null)
         {

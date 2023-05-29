@@ -9,6 +9,7 @@ public sealed class AuthorProfile : Profile
 {
     public AuthorProfile()
     {
+        CreateMap<Author, GetAuthorResponse>();
         CreateMap<Author, GetAllAuthorsItemResponse>();
 
         CreateMap<CreateAuthorCommand, Author>();

@@ -33,6 +33,7 @@ public static class MediatrExtensions
 
         #region Author
 
+        builder.Services.AddTransient<IRequestHandler<GetAuthorQuery, GetAuthorResponse>, GetAuthorQueryHandler>();
         builder.Services.AddTransient<IRequestHandler<GetAllAuthorsQuery, GetAllAuthorsResponse>, GetAllAuthorsQueryHandler>();
         builder.Services.AddTransient<IRequestHandler<CreateAuthorCommand, CreateAuthorResponse>, CreateAuthorCommandHandler>();
         builder.Services.AddTransient<IRequestHandler<UpdateAuthorCommand, UpdateAuthorResponse>, UpdateAuthorCommandHandler>();

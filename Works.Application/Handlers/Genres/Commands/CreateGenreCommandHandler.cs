@@ -20,8 +20,8 @@ public sealed class CreateGenreCommandHandler : IRequestHandler<CreateGenreComma
 
     public async Task<CreateGenreResponse> Handle(CreateGenreCommand command, CancellationToken cancellationToken)
     {
-        var isGenreDataExists = await _unitOfWork.GenresRepository.ExistsAsync(genre =>
-                genre.Name == command.Name,
+        var isGenreDataExists = await _unitOfWork.GenresRepository.ExistsAsync(x =>
+                x.Name == command.Name,
             cancellationToken);
         if (isGenreDataExists)
         {

@@ -19,16 +19,16 @@ public sealed class UpdateGenreCommandHandler : IRequestHandler<UpdateGenreComma
     
     public async Task<UpdateGenreResponse> Handle(UpdateGenreCommand command, CancellationToken cancellationToken)
     {
-        var genreData = await _unitOfWork.GenresRepository.GetAsync(genre =>
-                genre.Id == command.Id,
+        var genreData = await _unitOfWork.GenresRepository.GetAsync(x =>
+                x.Id == command.Id,
             cancellationToken);
         if (genreData == null)
         {
             throw new ArgumentException($"{command.Id} is not found.", nameof(command.Id));
         }
         
-        var isGenreNameExists = await _unitOfWork.GenresRepository.ExistsAsync(genre =>
-                genre.Name == command.Name && genre.Name != genreData.Name,
+        var isGenreNameExists = await _unitOfWork.GenresRepository.ExistsAsync(x =>
+                x.Name == command.Name && x.Name != genreData.Name,
             cancellationToken);
         if (isGenreNameExists)
         {

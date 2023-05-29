@@ -17,6 +17,10 @@ public sealed class AuthorsController : BaseApiController
     public async Task<GetAllAuthorsResponse> GetAllAsync([FromQuery] GetAllAuthorsQuery query, CancellationToken cancellationToken)
         => await _mediator.Send(query, cancellationToken);
 
+    [HttpGet("{id:guid}")]
+    public async Task<GetAuthorResponse> GetAsync(Guid id, CancellationToken cancellationToken)
+        => await _mediator.Send(new GetAuthorQuery(id), cancellationToken);
+
     [HttpPost]
     public async Task<CreateAuthorResponse> CreateAsync(CreateAuthorCommand command, CancellationToken cancellationToken)
         => await _mediator.Send(command, cancellationToken);
