@@ -20,6 +20,14 @@ public sealed class CreateAuthorCommandHandler : IRequestHandler<CreateAuthorCom
 
     public async Task<CreateAuthorResponse> Handle(CreateAuthorCommand command, CancellationToken cancellationToken)
     {
+        var isAuthorExists = await _unitOfWork.AuthorsRepository.ExistsAsync(x =>
+                x.UserId == command.UserId,
+            cancellationToken);
+        if (isAuthorExists)
+        {
+            throw new ArgumentException("Author with this UserId is already exists", nameof(command.UserId));
+        }
+        
         var authorData = _mapper.Map<Author>(command);
 
         await _unitOfWork.BeginTransactionAsync(new[]
