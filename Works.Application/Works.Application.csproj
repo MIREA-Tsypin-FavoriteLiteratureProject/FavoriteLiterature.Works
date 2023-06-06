@@ -15,6 +15,7 @@
     <ItemGroup>
       <PackageReference Include="AutoMapper" />
       <PackageReference Include="MediatR" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" />
       <PackageReference Include="RabbitMQ.Client" />
     </ItemGroup>
 
