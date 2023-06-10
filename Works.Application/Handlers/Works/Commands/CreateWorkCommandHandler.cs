@@ -47,10 +47,28 @@ public sealed class CreateWorkCommandHandler : IRequestHandler<CreateWorkCommand
 
             workData.Genres.Add(genreData);
         }
-        
+
         await _unitOfWork.BeginTransactionAsync(new[]
         {
             () => _unitOfWork.WorksRepository.Add(workData)
         });
+
+        foreach (var fileNameWithExtension in command.Files)
+        {
+            var fileId = Path.GetFileNameWithoutExtension(fileNameWithExtension);
+            var attachmentTypeId = Path.GetExtension(fileNameWithExtension);
+
+            var attachmentData = new Attachment
+            {
+                WorkId = workData.Id, 
+                FileId = Guid.Parse(fileId),
+                AttachmentTypeId = attachmentTypeId
+            };
+
+            await _unitOfWork.BeginTransactionAsync(new[]
+            {
+                () => _unitOfWork.AttachmentsRepository.Add(attachmentData)
+            });
+        }
     }
 }
