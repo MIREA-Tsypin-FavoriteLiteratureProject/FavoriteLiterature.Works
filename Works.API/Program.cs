@@ -12,6 +12,7 @@ builder.AddRepositories();
 builder.AddMediatr();
 builder.AddAutoMapper();
 builder.AddNormalizeRoute();
+builder.AddAttachmentStorage();
 
 var app = builder.Build();
 app.SeedDatabase();

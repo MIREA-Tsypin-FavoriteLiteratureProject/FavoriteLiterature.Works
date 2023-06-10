@@ -4,7 +4,7 @@ public class GetAllAttachmentsItemResponse
 {
     public Guid Id { get; set; }
 
-    public Guid DraftId { get; set; }
+    public Guid WorkId { get; set; }
 
     public Guid FileId { get; set; }
 
