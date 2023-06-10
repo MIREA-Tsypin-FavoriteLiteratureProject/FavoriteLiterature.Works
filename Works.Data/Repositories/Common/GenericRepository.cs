@@ -1,26 +1,25 @@
 ﻿using System.Linq.Expressions;
 using FavoriteLiterature.Works.Data.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
-using Works.Data;
 
 namespace FavoriteLiterature.Works.Data.Repositories.Common;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {
     private readonly FavoriteLiteratureWorksDbContext _dbContext;
-    private readonly DbSet<T> _entitySet;
+    protected readonly DbSet<T> EntitySet;
 
     protected GenericRepository(FavoriteLiteratureWorksDbContext dbContext)
     {
         _dbContext = dbContext;
-        _entitySet = _dbContext.Set<T>();
+        EntitySet = _dbContext.Set<T>();
     }
 
     public async Task<T?> GetAsync(Expression<Func<T, bool>> expression, CancellationToken cancellationToken = default) 
-        => await _entitySet.FirstOrDefaultAsync(expression, cancellationToken);
+        => await EntitySet.FirstOrDefaultAsync(expression, cancellationToken);
 
     public async Task<IEnumerable<T>> GetAllAsync(int skip, int take, CancellationToken cancellationToken = default)
-        => await _entitySet.Skip(skip).Take(take).ToListAsync(cancellationToken);
+        => await EntitySet.Skip(skip).Take(take).ToListAsync(cancellationToken);
 
     public void Add(T entity) 
         => _dbContext.Add(entity);
@@ -32,5 +31,5 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         => _dbContext.Remove(entity);
 
     public async Task<bool> ExistsAsync(Expression<Func<T, bool>> expression, CancellationToken cancellationToken = default) 
-        => await _entitySet.AnyAsync(expression, cancellationToken);
+        => await EntitySet.AnyAsync(expression, cancellationToken);
 }

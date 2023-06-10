@@ -1,7 +1,7 @@
 ﻿using FavoriteLiterature.Works.Data.Repositories.Attachments;
 using FavoriteLiterature.Works.Data.Repositories.Authors;
 using FavoriteLiterature.Works.Data.Repositories.Genres;
-using Works.Data.Repositories.Works;
+using FavoriteLiterature.Works.Data.Repositories.Works;
 
 namespace FavoriteLiterature.Works.Data.Repositories;
 

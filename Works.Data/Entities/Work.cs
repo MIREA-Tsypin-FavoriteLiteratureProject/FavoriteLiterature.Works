@@ -23,12 +23,17 @@ public sealed class Work : BaseEntity
     public string? Description { get; set; }
 
     /// <summary>
-    /// Ссылка на авторов произведения
+    /// Ссылка на авторов
     /// </summary>
     public ICollection<Author> Authors { get; } = new List<Author>();
 
     /// <summary>
-    /// Жанры произведения
+    /// Ссылка на жанры
     /// </summary>
     public ICollection<Genre> Genres { get; } = new List<Genre>();
+
+    /// <summary>
+    /// Ссылка на вложения
+    /// </summary>
+    public ICollection<Attachment> Attachments { get; } = new List<Attachment>();
 }

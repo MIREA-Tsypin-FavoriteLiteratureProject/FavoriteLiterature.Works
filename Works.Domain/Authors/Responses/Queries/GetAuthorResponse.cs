@@ -4,6 +4,8 @@ public class GetAuthorResponse
 {
     public Guid Id { get; set; }
 
+    public string Alias { get; set; } = null!;
+
     public string PublicEmail { get; set; } = null!;
 
     public string? Description { get; set; }

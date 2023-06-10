@@ -12,6 +12,7 @@ public static class AutoMapperExtensions
                 cfg.AddProfile(new AttachmentProfile());
                 cfg.AddProfile(new AuthorProfile());
                 cfg.AddProfile(new GenreProfile());
+                cfg.AddProfile(new WorkProfile());
             });
 
             return config.CreateMapper();
