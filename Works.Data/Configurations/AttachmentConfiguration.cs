@@ -16,6 +16,6 @@ public sealed class AttachmentConfiguration : BaseEntityConfiguration<Attachment
         builder.Property(x => x.Id).HasColumnName("id").IsRequired();
         builder.Property(x => x.WorkId).HasColumnName($"{WorksApiTables.Works}_id").IsRequired();
         builder.Property(x => x.FileId).HasColumnName("file_id").IsRequired();
-        builder.Property(x => x.AttachmentTypeId).HasColumnName($"{WorksApiTables.AttachmentTypes}_id").IsRequired();
+        builder.Property(x => x.AttachmentTypeId).HasColumnName("attachment_types_id").IsRequired();
     }
 }

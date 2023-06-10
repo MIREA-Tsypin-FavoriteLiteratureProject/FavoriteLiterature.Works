@@ -9,7 +9,6 @@ public static class AutoMapperExtensions
     {
         builder.Services.AddSingleton<IMapper>(_ => { var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile(new AttachmentTypeProfile());
                 cfg.AddProfile(new AuthorProfile());
                 cfg.AddProfile(new GenreProfile());
             });

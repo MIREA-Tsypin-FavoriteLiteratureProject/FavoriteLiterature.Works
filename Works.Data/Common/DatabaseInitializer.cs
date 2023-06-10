@@ -10,11 +10,5 @@ public static class DatabaseInitializer
         {
             context.Database.Migrate();
         }
-
-        if (!context.AttachmentTypes.Any())
-        {
-            context.AttachmentTypes.AddRange(DatabaseSeeds.AttachmentTypes);
-            context.SaveChanges();
-        }
     }
 }

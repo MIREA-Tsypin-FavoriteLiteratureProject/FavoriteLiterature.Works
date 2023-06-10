@@ -23,5 +23,4 @@ public sealed class Attachment : BaseEntity
     /// Тип вложения
     /// </summary>
     public string AttachmentTypeId { get; set; } = null!;
-    public AttachmentType AttachmentType { get; set; }
 }
