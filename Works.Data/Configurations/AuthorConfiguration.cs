@@ -15,6 +15,7 @@ public sealed class AuthorConfiguration : BaseEntityConfiguration<Author>
         builder.HasIndex(x => x.UserId).IsUnique();
 
         builder.Property(x => x.Id).HasColumnName("id").IsRequired();
+        builder.Property(x => x.Alias).HasColumnName("alias").HasMaxLength(100).IsRequired();
         builder.Property(x => x.PublicEmail).HasColumnName("public_email").HasMaxLength(100).IsRequired();
         builder.Property(x => x.Description).HasColumnName("description");
         builder.Property(x => x.UserId).HasColumnName("user_id").IsRequired();

@@ -8,6 +8,11 @@ namespace FavoriteLiterature.Works.Data.Entities;
 public sealed class Author : BaseEntity
 {
     /// <summary>
+    /// Псевдоним
+    /// </summary>
+    public string Alias { get; set; } = null!;
+
+    /// <summary>
     /// Публичная почта для читателей
     /// </summary>
     public string PublicEmail { get; set; } = null!;
