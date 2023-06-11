@@ -13,6 +13,7 @@ builder.AddMediatr();
 builder.AddAutoMapper();
 builder.AddNormalizeRoute();
 builder.AddAttachmentStorage();
+builder.AddFluentValidation();
 
 var app = builder.Build();
 app.SeedDatabase();
