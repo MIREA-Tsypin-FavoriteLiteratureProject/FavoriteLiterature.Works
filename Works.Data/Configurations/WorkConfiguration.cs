@@ -16,6 +16,7 @@ public sealed class WorkConfiguration : BaseEntityConfiguration<Work>
         builder.Property(x => x.Id).HasColumnName("id").IsRequired();
         builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(100).IsRequired();
         builder.Property(x => x.Rating).HasColumnName("rating");
+        builder.Property(x => x.RatingCounter).HasColumnName("rating_counter");
         builder.Property(x => x.Description).HasColumnName("description");
     }
 }

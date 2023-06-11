@@ -17,6 +17,7 @@ using FavoriteLiterature.Works.Domain.Genres.Responses.Commands;
 using FavoriteLiterature.Works.Domain.Genres.Responses.Queries;
 using FavoriteLiterature.Works.Domain.Works.Requests.Commands;
 using FavoriteLiterature.Works.Domain.Works.Requests.Queries;
+using FavoriteLiterature.Works.Domain.Works.Responses.Commands;
 using FavoriteLiterature.Works.Domain.Works.Responses.Queries;
 using MediatR;
 
@@ -59,6 +60,7 @@ public static class MediatrExtensions
         builder.Services.AddTransient<IRequestHandler<GetWorkQuery, GetWorkResponse>, GetWorkQueryHandler>();
         builder.Services.AddTransient<IRequestHandler<GetAllWorksQuery, GetAllWorksResponse>, GetAllWorksQueryHandler>();
         builder.Services.AddTransient<IRequestHandler<CreateWorkCommand>, CreateWorkCommandHandler>();
+        builder.Services.AddTransient<IRequestHandler<UpdateWorkRatingCommand, UpdateWorkRatingResponse>, UpdateWorkRatingCommandHandler>();
 
         #endregion
     }

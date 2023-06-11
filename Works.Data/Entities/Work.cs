@@ -18,6 +18,11 @@ public sealed class Work : BaseEntity
     public decimal Rating { get; set; }
 
     /// <summary>
+    /// Счётчик количества оценок
+    /// </summary>
+    public int RatingCounter { get; set; }
+
+    /// <summary>
     /// Краткое описание произведения 
     /// </summary>
     public string? Description { get; set; }
