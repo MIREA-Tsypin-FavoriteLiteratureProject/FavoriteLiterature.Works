@@ -1,11 +1,16 @@
 using FavoriteLiterature.Works.Extensions;
 using FavoriteLiterature.Works.Extensions.Builder;
 using FavoriteLiterature.Works.Extensions.Builder.Common;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddPostgresDatabase();
 builder.Services.AddControllers();
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearerAuthentication(builder.Configuration);
+
 builder.AddRabbitMqSubscriber();
 builder.AddSwagger();
 builder.AddRepositories();
