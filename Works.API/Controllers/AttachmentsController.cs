@@ -1,6 +1,7 @@
 ﻿using FavoriteLiterature.Works.Domain.Attachments.Requests.Queries;
 using FavoriteLiterature.Works.Domain.Attachments.Responses.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FavoriteLiterature.Works.Controllers;
@@ -19,6 +20,7 @@ public sealed class AttachmentsController : BaseApiController
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<GetAllAttachmentsResponse> GetAllAsync([FromQuery] GetAllAttachmentsQuery query, CancellationToken cancellationToken)
         => await _mediator.Send(query, cancellationToken);
 }

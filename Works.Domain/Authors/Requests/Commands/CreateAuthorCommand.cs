@@ -11,9 +11,9 @@ public class CreateAuthorCommand : IRequest<CreateAuthorResponse>
 
     [Required]
     public string PublicEmail { get; set; } = null!;
-    
+
     public string? Description { get; set; }
-    
+
     [Required]
     public Guid UserId { get; set; }
 }

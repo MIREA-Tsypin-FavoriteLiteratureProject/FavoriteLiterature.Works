@@ -1,0 +1,27 @@
+﻿using System.Security;
+using System.Security.Claims;
+using FavoriteLiterature.Works.Application.Policies;
+using Microsoft.AspNetCore.Authorization;
+
+namespace FavoriteLiterature.Works.Application.Handlers.Common.Policies;
+
+public sealed class MinimumRoleRequirementHandler  : AuthorizationHandler<MinimumRoleRequirement>
+{
+    protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, MinimumRoleRequirement requirement)
+    {
+        var roleName = context.User.FindFirst(claim => claim.Type == ClaimTypes.Role)?.Value;
+        
+        if (Enum.TryParse<RolePolicy>(roleName, out var currentWeight) &&
+            Enum.TryParse<RolePolicy>(requirement.RoleName, out var requirementWeight))
+        {
+            if (currentWeight > requirementWeight)
+            {
+                throw new SecurityException("No access!");
+            }
+
+            context.Succeed(requirement);
+        }
+
+        throw new SecurityException("No access!");
+    }
+}
