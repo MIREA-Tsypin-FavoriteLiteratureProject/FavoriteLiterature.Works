@@ -6,9 +6,15 @@ public static class DatabaseInitializer
 {
     public static void Initialize(FavoriteLiteratureWorksDbContext context)
     {
-        if (!context.Database.CanConnect())
+        if (context.Database.CanConnect())
         {
             context.Database.Migrate();
+        }
+
+        if (!context.Genres.Any())
+        {
+            context.Genres.AddRange(DatabaseSeeds.Genres);
+            context.SaveChanges();
         }
     }
 }
