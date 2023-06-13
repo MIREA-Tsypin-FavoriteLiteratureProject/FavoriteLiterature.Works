@@ -1,6 +1,7 @@
 using FavoriteLiterature.Works.Extensions;
 using FavoriteLiterature.Works.Extensions.Builder;
 using FavoriteLiterature.Works.Extensions.Builder.Common;
+using FavoriteLiterature.Works.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,15 +20,20 @@ builder.AddSwagger();
 builder.AddRepositories();
 builder.AddMediatr();
 builder.AddAutoMapper();
+builder.AddCustomMiddlewares();
 builder.AddNormalizeRoute();
 builder.AddAttachmentStorage();
 builder.AddFluentValidation();
 
 var app = builder.Build();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.SeedDatabase();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseExceptionHandlingMiddleware();
 app.MapControllers();

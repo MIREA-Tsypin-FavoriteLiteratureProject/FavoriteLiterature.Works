@@ -11,8 +11,8 @@ public sealed class MinimumRoleRequirementHandler  : AuthorizationHandler<Minimu
     {
         var roleName = context.User.FindFirst(claim => claim.Type == ClaimTypes.Role)?.Value;
         
-        if (Enum.TryParse<RolePolicy>(roleName, out var currentWeight) &&
-            Enum.TryParse<RolePolicy>(requirement.RoleName, out var requirementWeight))
+        if (Enum.TryParse<RolePolicy>(roleName, true, out var currentWeight) &&
+            Enum.TryParse<RolePolicy>(requirement.RoleName, true, out var requirementWeight))
         {
             if (currentWeight > requirementWeight)
             {
@@ -21,7 +21,9 @@ public sealed class MinimumRoleRequirementHandler  : AuthorizationHandler<Minimu
 
             context.Succeed(requirement);
         }
-
-        throw new SecurityException("No access!");
+        else
+        {
+            throw new SecurityException("No access!");
+        }
     }
 }
