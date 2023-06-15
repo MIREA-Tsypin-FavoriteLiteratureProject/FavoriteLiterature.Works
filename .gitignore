@@ -4,3 +4,6 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+
+# Works.API backend
+**/Works.API/**/appsettings.Local.json
