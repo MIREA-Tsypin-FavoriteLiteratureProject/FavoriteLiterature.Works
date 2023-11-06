@@ -17,8 +17,5 @@ public sealed class CreateAuthorCommandValidator : AbstractValidator<CreateAutho
             .EmailAddress()
             .MaximumLength(100)
             .WithMessage(x => $"The {nameof(x.PublicEmail)} must not exceed 100 characters.");
-
-        RuleFor(x => x.UserId)
-            .NotEmpty();
     }
 }

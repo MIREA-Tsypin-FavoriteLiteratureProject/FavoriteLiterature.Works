@@ -28,17 +28,9 @@ public sealed class Work : BaseEntity
     public string? Description { get; set; }
 
     /// <summary>
-    /// Ссылка на авторов
-    /// </summary>
-    public ICollection<Author> Authors { get; } = new List<Author>();
-
-    /// <summary>
-    /// Ссылка на жанры
-    /// </summary>
-    public ICollection<Genre> Genres { get; } = new List<Genre>();
-
-    /// <summary>
-    /// Ссылка на вложения
+    /// Навигационное свойство для EF
     /// </summary>
     public ICollection<Attachment> Attachments { get; } = new List<Attachment>();
+    public ICollection<Author> Authors { get; } = new List<Author>();
+    public ICollection<Genre> Genres { get; } = new List<Genre>();
 }

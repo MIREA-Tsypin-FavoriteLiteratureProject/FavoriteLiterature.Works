@@ -6,6 +6,7 @@
         <Nullable>$(Nullable)</Nullable>
         <ImplicitUsings>$(ImplicitUsings)</ImplicitUsings>
         <RootNamespace>FavoriteLiterature.Works</RootNamespace>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>

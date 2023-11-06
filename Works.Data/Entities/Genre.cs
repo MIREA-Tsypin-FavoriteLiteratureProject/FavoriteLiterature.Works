@@ -11,14 +11,14 @@ public sealed class Genre : BaseEntity
     /// Имя жанра
     /// </summary>
     public string Name { get; set; } = null!;
-    
+
     /// <summary>
     /// Краткое описание
     /// </summary>
     public string? Description { get; set; }
-    
+
     /// <summary>
-    /// Ссылка на работы
+    /// Навигационное свойство для EF
     /// </summary>
     public ICollection<Work> Works { get; } = new List<Work>();
 }

@@ -22,9 +22,9 @@ public sealed class UpdateAuthorCommandHandler : IRequestHandler<UpdateAuthorCom
             throw new ArgumentException("Author is not found", nameof(command.Id));
         }
 
-        if (!string.IsNullOrWhiteSpace(command.Alias) && command.Alias != authorData.Alias)
+        if (!string.IsNullOrWhiteSpace(command.Alias) && command.Alias != authorData.NickName)
         {
-            authorData.Alias = command.Alias;
+            authorData.NickName = command.Alias;
         }
 
         if (!string.IsNullOrWhiteSpace(command.PublicEmail) && command.PublicEmail != authorData.PublicEmail)

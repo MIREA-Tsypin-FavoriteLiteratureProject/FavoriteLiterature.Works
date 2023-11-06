@@ -13,14 +13,32 @@ public sealed class GenresController : BaseApiController
     {
     }
 
+    /// <summary>
+    /// Получение всех жанров с механизмом пагинации
+    /// </summary>
+    /// <param name="skip">Сколько пропустить</param>
+    /// <param name="take">Сколько взять</param>
+    /// <returns>Коллекция жанров в заданном диапазоне</returns>
     [HttpGet]
     public async Task<GetAllGenresResponse> GetAllAsync([FromQuery] GetAllGenresQuery query, CancellationToken cancellationToken)
         => await Mediator.Send(query, cancellationToken);
 
+    /// <summary>
+    /// Получение одного жанра по его уникальному идентификатору
+    /// </summary>
+    /// <param name="id">Уникальный идентификатор GUID</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [HttpGet("{id:guid}")]
     public async Task<GetGenreResponse> GetAsync(Guid id, CancellationToken cancellationToken)
         => await Mediator.Send(new GetGenreQuery(id), cancellationToken);
 
+    /// <summary>
+    /// Создание жанра
+    /// </summary>
+    /// <param name="command">Модель необходимая для создания жанра</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [HttpPost]
     public async Task<CreateGenreResponse> CreateAsync(CreateGenreCommand command, CancellationToken cancellationToken) 
         => await Mediator.Send(command, cancellationToken);

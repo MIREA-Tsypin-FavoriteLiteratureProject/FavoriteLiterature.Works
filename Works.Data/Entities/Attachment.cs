@@ -11,8 +11,8 @@ public sealed class Attachment : BaseEntity
     /// Уникальный идентификатор работы писателя
     /// </summary>
     public Guid WorkId { get; set; }
-    public Work Work { get; set; }
-    
+    public Work Work { get; set; } = null!;
+
     /// <summary>
     /// Уникальный идентификатор файла,
     /// его номер на файл-сервере

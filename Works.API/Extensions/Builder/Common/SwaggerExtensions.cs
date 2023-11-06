@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.OpenApi.Models;
 
 namespace FavoriteLiterature.Works.Extensions.Builder.Common;
@@ -21,6 +22,10 @@ public static class SwaggerExtensions
                     Url = new Uri("https://t.me/some_email"),
                 },
             });
+
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            options.IncludeXmlComments(xmlPath);
         });
     }
 }
