@@ -1,7 +1,9 @@
+using App.Metrics;
 using FavoriteLiterature.Works.Domain.Authors.Requests.Commands;
 using FavoriteLiterature.Works.Domain.Authors.Requests.Queries;
 using FavoriteLiterature.Works.Domain.Authors.Responses.Commands;
 using FavoriteLiterature.Works.Domain.Authors.Responses.Queries;
+using FavoriteLiterature.Works.Metrics;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +11,7 @@ namespace FavoriteLiterature.Works.Controllers;
 
 public sealed class AuthorsController : BaseApiController
 {
-    public AuthorsController(IMediator mediator) : base(mediator)
+    public AuthorsController(IMediator mediator, IMetrics metrics) : base(mediator, metrics)
     {
     }
 
@@ -34,7 +36,10 @@ public sealed class AuthorsController : BaseApiController
     /// <param name="command">Модель создания автора</param>
     [HttpPost]
     public async Task<CreateAuthorResponse> CreateAsync(CreateAuthorCommand command, CancellationToken cancellationToken)
-        => await Mediator.Send(command, cancellationToken);
+    {
+        Metrics.Measure.Counter.Increment(MetricsRegistry.CreatedAuthorsCounter);
+        return await Mediator.Send(command, cancellationToken);
+    }
 
     /// <summary>
     /// Обновление существующего автора

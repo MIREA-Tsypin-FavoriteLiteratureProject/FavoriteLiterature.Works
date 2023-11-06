@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using App.Metrics;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FavoriteLiterature.Works.Controllers;
@@ -8,9 +9,11 @@ namespace FavoriteLiterature.Works.Controllers;
 public class BaseApiController : ControllerBase
 {
     protected readonly IMediator Mediator;
+    protected readonly IMetrics Metrics;
 
-    public BaseApiController(IMediator mediator)
+    public BaseApiController(IMediator mediator, IMetrics metrics)
     {
         Mediator = mediator;
+        Metrics = metrics;
     }
 }

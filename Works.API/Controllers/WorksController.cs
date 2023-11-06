@@ -1,3 +1,4 @@
+using App.Metrics;
 using FavoriteLiterature.Works.Domain.Works.Requests.Commands;
 using FavoriteLiterature.Works.Domain.Works.Requests.Queries;
 using FavoriteLiterature.Works.Domain.Works.Responses.Commands;
@@ -9,7 +10,7 @@ namespace FavoriteLiterature.Works.Controllers;
 
 public sealed class WorksController : BaseApiController
 {
-    public WorksController(IMediator mediator) : base(mediator)
+    public WorksController(IMediator mediator, IMetrics metrics) : base(mediator, metrics)
     {
     }
 

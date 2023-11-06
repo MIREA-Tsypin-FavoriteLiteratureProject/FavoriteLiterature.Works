@@ -1,7 +1,9 @@
+using App.Metrics;
 using FavoriteLiterature.Works.Domain.Genres.Requests.Commands;
 using FavoriteLiterature.Works.Domain.Genres.Requests.Queries;
 using FavoriteLiterature.Works.Domain.Genres.Responses.Commands;
 using FavoriteLiterature.Works.Domain.Genres.Responses.Queries;
+using FavoriteLiterature.Works.Metrics;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +11,7 @@ namespace FavoriteLiterature.Works.Controllers;
 
 public sealed class GenresController : BaseApiController
 {
-    public GenresController(IMediator mediator) : base(mediator)
+    public GenresController(IMediator mediator, IMetrics metrics) : base(mediator, metrics)
     {
     }
 
@@ -33,8 +35,11 @@ public sealed class GenresController : BaseApiController
     /// </summary>
     /// <param name="command">Модель создания жанра</param>
     [HttpPost]
-    public async Task<CreateGenreResponse> CreateAsync(CreateGenreCommand command, CancellationToken cancellationToken) 
-        => await Mediator.Send(command, cancellationToken);
+    public async Task<CreateGenreResponse> CreateAsync(CreateGenreCommand command, CancellationToken cancellationToken)
+    {
+        Metrics.Measure.Counter.Increment(MetricsRegistry.CreatedGenresCounter);
+        return await Mediator.Send(command, cancellationToken);
+    }
 
     /// <summary>
     /// Обновление существующего жанра

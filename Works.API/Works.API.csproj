@@ -10,6 +10,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="App.Metrics.AspNetCore" />
+      <PackageReference Include="App.Metrics.AspNetCore.Endpoints" />
+      <PackageReference Include="App.Metrics.AspNetCore.Tracking" />
+      <PackageReference Include="App.Metrics.Formatters.Prometheus" />
       <PackageReference Include="FluentValidation.AspNetCore" />
       <PackageReference Include="MediatR" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />

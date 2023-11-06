@@ -1,4 +1,5 @@
-﻿using FavoriteLiterature.Works.Domain.Attachments.Requests.Commands;
+﻿using App.Metrics;
+using FavoriteLiterature.Works.Domain.Attachments.Requests.Commands;
 using FavoriteLiterature.Works.Domain.Attachments.Requests.Queries;
 using FavoriteLiterature.Works.Domain.Attachments.Responses.Commands;
 using FavoriteLiterature.Works.Domain.Attachments.Responses.Queries;
@@ -9,7 +10,7 @@ namespace FavoriteLiterature.Works.Controllers;
 
 public sealed class AttachmentsController : BaseApiController
 {
-    public AttachmentsController(IMediator mediator) : base(mediator)
+    public AttachmentsController(IMediator mediator, IMetrics metrics) : base(mediator, metrics)
     {
     }
 
