@@ -7,3 +7,5 @@ riderModule.iml
 
 # Works.API backend
 **/Works.API/**/appsettings.Local.json
+Works.DevOps/prometheus
+Works.DevOps/grafana
