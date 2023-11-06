@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FavoriteLiterature.Works.Data.Entities;
+using FavoriteLiterature.Works.Domain.Works.Requests.Commands;
 using FavoriteLiterature.Works.Domain.Works.Responses.Queries;
 
 namespace FavoriteLiterature.Works.Application.Mapping;
@@ -13,5 +14,8 @@ public sealed class WorkProfile : Profile
         CreateMap<Work, GetAllWorksItemResponse>()
             .ForMember(dest => dest.Authors, opt => opt.MapFrom(src => src.Authors.Select(a => a.NickName).ToList()))
             .ForMember(dest => dest.Genres, opt => opt.MapFrom(src => src.Genres.Select(g => g.Name).ToList()));
+
+        CreateMap<CreateWorkCommand, Work>();
+        CreateMap<UpdateWorkCommand, Work>();
     }
 }

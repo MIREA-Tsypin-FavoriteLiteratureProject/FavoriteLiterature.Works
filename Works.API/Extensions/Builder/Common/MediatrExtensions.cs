@@ -66,7 +66,9 @@ public static class MediatrExtensions
 
         builder.Services.AddTransient<IRequestHandler<GetWorkQuery, GetWorkResponse>, GetWorkQueryHandler>();
         builder.Services.AddTransient<IRequestHandler<GetAllWorksQuery, GetAllWorksResponse>, GetAllWorksQueryHandler>();
-        builder.Services.AddTransient<IRequestHandler<CreateWorkCommand>, CreateWorkCommandHandler>();
+        builder.Services.AddTransient<IRequestHandler<CreateWorkCommand, CreateWorkResponse>, CreateWorkCommandHandler>();
+        builder.Services.AddTransient<IRequestHandler<UpdateWorkCommand, UpdateWorkResponse>, UpdateWorkCommandHandler>();
+        builder.Services.AddTransient<IRequestHandler<DeleteWorkCommand, DeleteWorkResponse>, DeleteWorkCommandHandler>();
         builder.Services.AddTransient<IRequestHandler<UpdateWorkRatingCommand, UpdateWorkRatingResponse>, UpdateWorkRatingCommandHandler>();
 
         #endregion

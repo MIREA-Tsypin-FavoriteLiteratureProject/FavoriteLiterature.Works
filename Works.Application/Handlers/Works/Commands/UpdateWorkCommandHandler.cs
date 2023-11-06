@@ -1,5 +1,4 @@
-using AutoMapper;
-using FavoriteLiterature.Works.Data.Entities;
+﻿using AutoMapper;
 using FavoriteLiterature.Works.Data.Repositories;
 using FavoriteLiterature.Works.Domain.Works.Requests.Commands;
 using FavoriteLiterature.Works.Domain.Works.Responses.Commands;
@@ -7,20 +6,28 @@ using MediatR;
 
 namespace FavoriteLiterature.Works.Application.Handlers.Works.Commands;
 
-public sealed class CreateWorkCommandHandler : IRequestHandler<CreateWorkCommand, CreateWorkResponse>
+public sealed class UpdateWorkCommandHandler : IRequestHandler<UpdateWorkCommand, UpdateWorkResponse>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
-
-    public CreateWorkCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+    
+    public UpdateWorkCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
-
-    public async Task<CreateWorkResponse> Handle(CreateWorkCommand command, CancellationToken cancellationToken)
+    
+    public async Task<UpdateWorkResponse> Handle(UpdateWorkCommand command, CancellationToken cancellationToken)
     {
-        var workData = _mapper.Map<Work>(command);
+        var workData = await _unitOfWork.WorksRepository.GetAsync(work =>
+                work.Id == command.Id,
+            cancellationToken);
+        if (workData == null)
+        {
+            throw new ArgumentException($"{command.Id} is not found.", nameof(command.Id));
+        }
+
+        _mapper.Map(command, workData);
 
         foreach (var authorId in command.AuthorIds)
         {
@@ -50,9 +57,9 @@ public sealed class CreateWorkCommandHandler : IRequestHandler<CreateWorkCommand
 
         await _unitOfWork.BeginTransactionAsync(new[]
         {
-            () => _unitOfWork.WorksRepository.Add(workData)
+            () => _unitOfWork.WorksRepository.Update(workData)
         });
 
-        return new CreateWorkResponse(workData.Id);
+        return new UpdateWorkResponse(workData.Id);
     }
 }
