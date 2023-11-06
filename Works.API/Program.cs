@@ -2,7 +2,6 @@ using FavoriteLiterature.Works.Extensions;
 using FavoriteLiterature.Works.Extensions.Builder;
 using FavoriteLiterature.Works.Extensions.Builder.Common;
 using FavoriteLiterature.Works.Middlewares;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,11 +9,7 @@ builder.Configuration.AddJsonFile("appsettings.Local.json", optional: true);
 
 builder.AddPostgresDatabase();
 builder.Services.AddControllers();
-builder.Services
-    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearerAuthentication(builder.Configuration);
 
-builder.AddRolePolicy();
 builder.AddRabbitMqSubscriber();
 builder.AddSwagger();
 builder.AddRepositories();

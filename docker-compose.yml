@@ -8,3 +8,13 @@
       POSTGRES_PASSWORD: "postgres"
     ports:
       - "7000:5432"
+
+  rabbit_mq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbit-mq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
