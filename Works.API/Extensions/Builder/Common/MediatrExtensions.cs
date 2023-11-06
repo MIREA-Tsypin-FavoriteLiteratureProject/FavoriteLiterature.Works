@@ -42,11 +42,12 @@ public static class MediatrExtensions
         builder.Services.AddTransient<IRequestHandler<GetAllAuthorsQuery, GetAllAuthorsResponse>, GetAllAuthorsQueryHandler>();
         builder.Services.AddTransient<IRequestHandler<CreateAuthorCommand, CreateAuthorResponse>, CreateAuthorCommandHandler>();
         builder.Services.AddTransient<IRequestHandler<UpdateAuthorCommand, UpdateAuthorResponse>, UpdateAuthorCommandHandler>();
+        builder.Services.AddTransient<IRequestHandler<DeleteAuthorCommand, DeleteAuthorResponse>, DeleteAuthorCommandHandler>();
 
         #endregion
-        
+
         #region Genre
-        
+
         builder.Services.AddTransient<IRequestHandler<GetGenreQuery, GetGenreResponse>, GetGenreQueryHandler>();
         builder.Services.AddTransient<IRequestHandler<GetAllGenresQuery, GetAllGenresResponse>, GetAllGenresQueryHandler>();
         builder.Services.AddTransient<IRequestHandler<CreateGenreCommand, CreateGenreResponse>, CreateGenreCommandHandler>();

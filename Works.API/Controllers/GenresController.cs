@@ -16,9 +16,6 @@ public sealed class GenresController : BaseApiController
     /// <summary>
     /// Получение всех жанров с механизмом пагинации
     /// </summary>
-    /// <param name="skip">Сколько пропустить</param>
-    /// <param name="take">Сколько взять</param>
-    /// <returns>Коллекция жанров в заданном диапазоне</returns>
     [HttpGet]
     public async Task<GetAllGenresResponse> GetAllAsync([FromQuery] GetAllGenresQuery query, CancellationToken cancellationToken)
         => await Mediator.Send(query, cancellationToken);
@@ -26,9 +23,7 @@ public sealed class GenresController : BaseApiController
     /// <summary>
     /// Получение одного жанра по его уникальному идентификатору
     /// </summary>
-    /// <param name="id">Уникальный идентификатор GUID</param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
+    /// <param name="id">Уникальный идентификатор жанра</param>
     [HttpGet("{id:guid}")]
     public async Task<GetGenreResponse> GetAsync(Guid id, CancellationToken cancellationToken)
         => await Mediator.Send(new GetGenreQuery(id), cancellationToken);
@@ -36,13 +31,16 @@ public sealed class GenresController : BaseApiController
     /// <summary>
     /// Создание жанра
     /// </summary>
-    /// <param name="command">Модель необходимая для создания жанра</param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
+    /// <param name="command">Модель создания жанра</param>
     [HttpPost]
     public async Task<CreateGenreResponse> CreateAsync(CreateGenreCommand command, CancellationToken cancellationToken) 
         => await Mediator.Send(command, cancellationToken);
 
+    /// <summary>
+    /// Обновление существующего жанра
+    /// </summary>
+    /// <param name="id">Уникальный идентификатор жанра</param>
+    /// <param name="command">Модель обновления жанра</param>
     [HttpPut("{id:guid}")]
     public async Task<UpdateGenreResponse> UpdateAsync(Guid id, [FromBody] UpdateGenreCommand command, CancellationToken cancellationToken)
     {
@@ -50,6 +48,10 @@ public sealed class GenresController : BaseApiController
         return await Mediator.Send(command, cancellationToken);
     }
 
+    /// <summary>
+    /// Удаление существующего жанра
+    /// </summary>
+    /// <param name="id">Уникальный идентификатор жанра</param>
     [HttpDelete("{id:guid}")]
     public async Task<DeleteGenreResponse> DeleteAsync(Guid id, CancellationToken cancellationToken)
         => await Mediator.Send(new DeleteGenreCommand(id), cancellationToken);
