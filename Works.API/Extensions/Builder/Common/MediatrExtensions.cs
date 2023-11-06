@@ -1,3 +1,4 @@
+using FavoriteLiterature.Works.Application.Handlers.Attachments.Commands;
 using FavoriteLiterature.Works.Application.Handlers.Attachments.Queries;
 using FavoriteLiterature.Works.Application.Handlers.Authors.Commands;
 using FavoriteLiterature.Works.Application.Handlers.Authors.Queries;
@@ -5,7 +6,9 @@ using FavoriteLiterature.Works.Application.Handlers.Genres.Commands;
 using FavoriteLiterature.Works.Application.Handlers.Genres.Queries;
 using FavoriteLiterature.Works.Application.Handlers.Works.Commands;
 using FavoriteLiterature.Works.Application.Handlers.Works.Queries;
+using FavoriteLiterature.Works.Domain.Attachments.Requests.Commands;
 using FavoriteLiterature.Works.Domain.Attachments.Requests.Queries;
+using FavoriteLiterature.Works.Domain.Attachments.Responses.Commands;
 using FavoriteLiterature.Works.Domain.Attachments.Responses.Queries;
 using FavoriteLiterature.Works.Domain.Authors.Requests.Commands;
 using FavoriteLiterature.Works.Domain.Authors.Requests.Queries;
@@ -33,6 +36,9 @@ public static class MediatrExtensions
 
         builder.Services.AddTransient<IRequestHandler<GetAttachmentQuery, GetAttachmentResponse>, GetAttachmentQueryHandler>();
         builder.Services.AddTransient<IRequestHandler<GetAllAttachmentsQuery, GetAllAttachmentsResponse>, GetAllAttachmentQueryHandler>();
+        builder.Services.AddTransient<IRequestHandler<CreateAttachmentCommand, CreateAttachmentResponse>, CreateAttachmentCommandHandler>();
+        builder.Services.AddTransient<IRequestHandler<DeleteAttachmentCommand, DeleteAttachmentResponse>, DeleteAttachmentCommandHandler>();
+
 
         #endregion
 

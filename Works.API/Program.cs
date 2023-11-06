@@ -10,7 +10,6 @@ builder.Configuration.AddJsonFile("appsettings.Local.json", optional: true);
 builder.AddPostgresDatabase();
 builder.Services.AddControllers();
 
-builder.AddRabbitMqSubscriber();
 builder.AddSwagger();
 builder.AddRepositories();
 builder.AddMediatr();
