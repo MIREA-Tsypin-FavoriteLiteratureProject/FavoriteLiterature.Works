@@ -5,7 +5,9 @@ namespace FavoriteLiterature.Works.Domain.Authors.Requests.Commands;
 
 public class CreateAuthorCommand : IRequest<CreateAuthorResponse>
 {
-    public required string Alias { get; set; }
+    public required string NickName { get; set; }
+
+    public string? FullName { get; set; }
 
     public required string PublicEmail { get; set; }
 
