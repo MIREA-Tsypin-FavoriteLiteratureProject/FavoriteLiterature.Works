@@ -40,9 +40,6 @@ app.SeedDatabase();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseAuthentication();
-app.UseAuthorization();
-
 app.UseExceptionHandlingMiddleware();
 app.MapControllers();
 app.Run();

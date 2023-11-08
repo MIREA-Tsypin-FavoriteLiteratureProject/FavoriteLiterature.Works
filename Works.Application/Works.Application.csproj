@@ -13,7 +13,6 @@
       <PackageReference Include="FluentValidation.AspNetCore" />
       <PackageReference Include="MediatR" />
       <PackageReference Include="Microsoft.Extensions.Hosting" />
-      <PackageReference Include="RabbitMQ.Client" />
     </ItemGroup>
 
     <ItemGroup>
