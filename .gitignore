@@ -9,3 +9,6 @@ riderModule.iml
 **/Works.API/**/appsettings.Local.json
 Works.DevOps/prometheus
 Works.DevOps/grafana
+
+# Logs
+Works.API/Logs

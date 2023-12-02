@@ -4,10 +4,16 @@ using FavoriteLiterature.Works.Extensions;
 using FavoriteLiterature.Works.Extensions.Builder;
 using FavoriteLiterature.Works.Extensions.Builder.Common;
 using FavoriteLiterature.Works.Middlewares;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddJsonFile("appsettings.Local.json", optional: true);
+
+builder.Host.UseSerilog((context, configuration) =>
+{
+    configuration.ReadFrom.Configuration(context.Configuration);
+});
 
 builder.Host.UseMetricsWebTracking().UseMetrics(options => 
 {
@@ -36,6 +42,8 @@ builder.AddSwagger();
 var app = builder.Build();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.SeedDatabase();
+
+app.UseSerilogRequestLogging();
 
 app.UseSwagger();
 app.UseSwaggerUI();

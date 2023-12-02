@@ -17,6 +17,7 @@
       <PackageReference Include="FluentValidation.AspNetCore" />
       <PackageReference Include="MediatR" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
+      <PackageReference Include="Serilog.AspNetCore" />
       <PackageReference Include="Swashbuckle.AspNetCore" />
     </ItemGroup>
 

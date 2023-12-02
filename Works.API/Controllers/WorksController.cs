@@ -10,7 +10,8 @@ namespace FavoriteLiterature.Works.Controllers;
 
 public sealed class WorksController : BaseApiController
 {
-    public WorksController(IMediator mediator, IMetrics metrics) : base(mediator, metrics)
+    public WorksController(IMediator mediator, IMetrics metrics, ILogger<WorksController> logger) 
+        : base(mediator, metrics, logger)
     {
     }
 

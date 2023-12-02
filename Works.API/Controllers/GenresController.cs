@@ -11,7 +11,8 @@ namespace FavoriteLiterature.Works.Controllers;
 
 public sealed class GenresController : BaseApiController
 {
-    public GenresController(IMediator mediator, IMetrics metrics) : base(mediator, metrics)
+    public GenresController(IMediator mediator, IMetrics metrics, ILogger<GenresController> logger) 
+        : base(mediator, metrics, logger)
     {
     }
 

@@ -10,7 +10,8 @@ namespace FavoriteLiterature.Works.Controllers;
 
 public sealed class AttachmentsController : BaseApiController
 {
-    public AttachmentsController(IMediator mediator, IMetrics metrics) : base(mediator, metrics)
+    public AttachmentsController(IMediator mediator, IMetrics metrics, ILogger<AttachmentsController> logger) 
+        : base(mediator, metrics, logger)
     {
     }
 
