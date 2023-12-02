@@ -10,6 +10,7 @@
       - "7000:5432"
 
   prometheus:
+    hostname: prometheus
     container_name: prometheus
     image: prom/prometheus
     ports:
@@ -18,7 +19,22 @@
       - ./prometheus:/prometheus/
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
 
+  grafana-loki:
+    hostname: loki
+    container_name: grafana_loki
+    image: grafana/loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    healthcheck:
+      test: wget -q --tries=1 -O- http://localhost:3100/ready
+      interval: 3s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
   grafana:
+    hostname: grafana
     container_name: grafana
     image: grafana/grafana
     ports:
@@ -26,4 +42,7 @@
     volumes:
       - ./grafana:/var/lib/grafana
     depends_on:
-      - prometheus
+      grafana-loki:
+        condition: service_healthy
+      prometheus:
+        condition: service_started
