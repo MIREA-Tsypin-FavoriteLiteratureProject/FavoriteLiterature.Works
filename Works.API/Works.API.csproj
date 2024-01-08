@@ -6,13 +6,21 @@
         <Nullable>$(Nullable)</Nullable>
         <ImplicitUsings>$(ImplicitUsings)</ImplicitUsings>
         <RootNamespace>FavoriteLiterature.Works</RootNamespace>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="App.Metrics.AspNetCore" />
+      <PackageReference Include="App.Metrics.AspNetCore.Endpoints" />
+      <PackageReference Include="App.Metrics.AspNetCore.Tracking" />
+      <PackageReference Include="App.Metrics.Formatters.Prometheus" />
       <PackageReference Include="FluentValidation.AspNetCore" />
+      <PackageReference Include="Jaeger" />
       <PackageReference Include="MediatR" />
-      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
+      <PackageReference Include="OpenTracing.Contrib.NetCore" />
+      <PackageReference Include="Serilog.AspNetCore" />
+      <PackageReference Include="Serilog.Sinks.Grafana.Loki" />
       <PackageReference Include="Swashbuckle.AspNetCore" />
     </ItemGroup>
 
@@ -20,6 +28,12 @@
       <ProjectReference Include="..\Works.Application\Works.Application.csproj" />
       <ProjectReference Include="..\Works.Data\Works.Data.csproj" />
       <ProjectReference Include="..\Works.Domain\Works.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="appsettings.Local.json">
+        <DependentUpon>appsettings.json</DependentUpon>
+      </Content>
     </ItemGroup>
 
 </Project>

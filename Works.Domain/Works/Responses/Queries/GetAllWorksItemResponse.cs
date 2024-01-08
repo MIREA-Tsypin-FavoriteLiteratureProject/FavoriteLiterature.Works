@@ -2,15 +2,15 @@
 
 public class GetAllWorksItemResponse
 {
-    public Guid Id { get; set; }
+    public required Guid Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    public required string Name { get; set; }
 
     public decimal Rating { get; set; }
 
     public string? Description { get; set; }
 
-    public ICollection<string> Authors { get; set; }
+    public required ICollection<string> Authors { get; set; }
 
-    public ICollection<string> Genres { get; set; }
+    public required ICollection<string> Genres { get; set; }
 }

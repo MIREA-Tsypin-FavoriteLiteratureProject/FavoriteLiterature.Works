@@ -1,44 +1,64 @@
-using FavoriteLiterature.Works.Application.Policies;
+using App.Metrics;
 using FavoriteLiterature.Works.Domain.Genres.Requests.Commands;
 using FavoriteLiterature.Works.Domain.Genres.Requests.Queries;
 using FavoriteLiterature.Works.Domain.Genres.Responses.Commands;
 using FavoriteLiterature.Works.Domain.Genres.Responses.Queries;
+using FavoriteLiterature.Works.Metrics;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FavoriteLiterature.Works.Controllers;
 
 public sealed class GenresController : BaseApiController
 {
-    public GenresController(IMediator mediator) : base(mediator)
+    public GenresController(IMediator mediator, IMetrics metrics, ILogger<GenresController> logger) 
+        : base(mediator, metrics, logger)
     {
     }
 
+    /// <summary>
+    /// Получение всех жанров с механизмом пагинации
+    /// </summary>
     [HttpGet]
-    [AllowAnonymous]
     public async Task<GetAllGenresResponse> GetAllAsync([FromQuery] GetAllGenresQuery query, CancellationToken cancellationToken)
-        => await _mediator.Send(query, cancellationToken);
+        => await Mediator.Send(query, cancellationToken);
 
+    /// <summary>
+    /// Получение одного жанра по его уникальному идентификатору
+    /// </summary>
+    /// <param name="id">Уникальный идентификатор жанра</param>
     [HttpGet("{id:guid}")]
     public async Task<GetGenreResponse> GetAsync(Guid id, CancellationToken cancellationToken)
-        => await _mediator.Send(new GetGenreQuery(id), cancellationToken);
+        => await Mediator.Send(new GetGenreQuery(id), cancellationToken);
 
+    /// <summary>
+    /// Создание жанра
+    /// </summary>
+    /// <param name="command">Модель создания жанра</param>
     [HttpPost]
-    [Authorize(Policy = nameof(RolePolicy.Critic))]
-    public async Task<CreateGenreResponse> CreateAsync(CreateGenreCommand command, CancellationToken cancellationToken) 
-        => await _mediator.Send(command, cancellationToken);
+    public async Task<CreateGenreResponse> CreateAsync(CreateGenreCommand command, CancellationToken cancellationToken)
+    {
+        Metrics.Measure.Counter.Increment(MetricsRegistry.CreatedGenresCounter);
+        return await Mediator.Send(command, cancellationToken);
+    }
 
+    /// <summary>
+    /// Обновление существующего жанра
+    /// </summary>
+    /// <param name="id">Уникальный идентификатор жанра</param>
+    /// <param name="command">Модель обновления жанра</param>
     [HttpPut("{id:guid}")]
-    [Authorize(Policy = nameof(RolePolicy.Critic))]
     public async Task<UpdateGenreResponse> UpdateAsync(Guid id, [FromBody] UpdateGenreCommand command, CancellationToken cancellationToken)
     {
         command.Id = id;
-        return await _mediator.Send(command, cancellationToken);
+        return await Mediator.Send(command, cancellationToken);
     }
 
+    /// <summary>
+    /// Удаление существующего жанра
+    /// </summary>
+    /// <param name="id">Уникальный идентификатор жанра</param>
     [HttpDelete("{id:guid}")]
-    [Authorize(Policy = nameof(RolePolicy.Critic))]
     public async Task<DeleteGenreResponse> DeleteAsync(Guid id, CancellationToken cancellationToken)
-        => await _mediator.Send(new DeleteGenreCommand(id), cancellationToken);
+        => await Mediator.Send(new DeleteGenreCommand(id), cancellationToken);
 }

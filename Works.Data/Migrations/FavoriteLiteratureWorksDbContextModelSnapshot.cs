@@ -72,15 +72,21 @@ namespace FavoriteLiterature.Works.Data.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<string>("Alias")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
-                        .HasColumnName("alias");
-
                     b.Property<string>("Description")
                         .HasColumnType("text")
                         .HasColumnName("description");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("full_name");
+
+                    b.Property<string>("NickName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("nick_name");
 
                     b.Property<string>("PublicEmail")
                         .IsRequired()
@@ -88,15 +94,8 @@ namespace FavoriteLiterature.Works.Data.Migrations
                         .HasColumnType("character varying(100)")
                         .HasColumnName("public_email");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("user_id");
-
                     b.HasKey("Id")
                         .HasName("authors_pkey");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("authors", (string)null);
                 });

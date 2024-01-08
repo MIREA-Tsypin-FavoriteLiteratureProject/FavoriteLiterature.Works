@@ -12,12 +12,11 @@ public sealed class AuthorConfiguration : BaseEntityConfiguration<Author>
     {
         builder.ToTable(WorksApiTables.Authors);
         builder.HasKey(x => x.Id).HasName($"{WorksApiTables.Authors}_pkey");
-        builder.HasIndex(x => x.UserId).IsUnique();
 
         builder.Property(x => x.Id).HasColumnName("id").IsRequired();
-        builder.Property(x => x.Alias).HasColumnName("alias").HasMaxLength(100).IsRequired();
+        builder.Property(x => x.NickName).HasColumnName("nick_name").HasMaxLength(100).IsRequired();
+        builder.Property(x => x.FullName).HasColumnName("full_name").HasMaxLength(100).IsRequired();
         builder.Property(x => x.PublicEmail).HasColumnName("public_email").HasMaxLength(100).IsRequired();
         builder.Property(x => x.Description).HasColumnName("description");
-        builder.Property(x => x.UserId).HasColumnName("user_id").IsRequired();
     }
 }

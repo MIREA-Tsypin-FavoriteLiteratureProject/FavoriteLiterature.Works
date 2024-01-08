@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.OpenApi.Models;
 
 namespace FavoriteLiterature.Works.Extensions.Builder.Common;
@@ -13,40 +14,18 @@ public static class SwaggerExtensions
             {
                 Version = "v1",
                 Title = "Favorite literature Works.API",
-                Description = "Сервис по работе с начинающими писателями. Микросервис по работе с актуальными работами авторов.",
+                Description = "Сервис книжный магазин",
                 Contact = new OpenApiContact
                 {
                     Name = "Цыпин Илья Павлович",
-                    Email = "tsypin.i.p@mail.ru",
-                    Url = new Uri("https://t.me/Dedicated407"),
+                    Email = "some_email@mail.ru",
+                    Url = new Uri("https://t.me/some_email"),
                 },
             });
 
-            // Добавление описания к Swagger о том, как защищен API.
-            options.AddSecurityDefinition("Bearer",
-                new OpenApiSecurityScheme
-                {
-                    In = ParameterLocation.Header,
-                    Description = "Пожалуйста, введите в поле слово 'Bearer', за которым следует пробел и JWT",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey
-                });
-
-            // Добавление глобальной безопасности.
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Id = "Bearer",
-                            Type = ReferenceType.SecurityScheme,
-                        }
-                    },
-                    Array.Empty<string>()
-                }
-            });
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            options.IncludeXmlComments(xmlPath);
         });
     }
 }

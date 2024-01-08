@@ -5,17 +5,17 @@ namespace FavoriteLiterature.Works.Domain.Works.Responses.Queries;
 
 public class GetWorkResponse
 {
-    public Guid Id { get; set; }
+    public required Guid Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    public required string Name { get; set; }
 
     public decimal Rating { get; set; }
 
     public string? Description { get; set; }
-    
-    public ICollection<GetAuthorResponse> Authors { get; set; }
 
-    public ICollection<GetGenreResponse> Genres { get; set; }
+    public required ICollection<GetAuthorResponse> Authors { get; set; }
 
-    public ICollection<Guid> Attachments { get; set; }
+    public required ICollection<GetGenreResponse> Genres { get; set; }
+
+    public required ICollection<Guid> Attachments { get; set; }
 }
