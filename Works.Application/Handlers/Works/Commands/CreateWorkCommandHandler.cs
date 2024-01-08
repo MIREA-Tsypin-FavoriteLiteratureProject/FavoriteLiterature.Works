@@ -1,48 +1,48 @@
+using AutoMapper;
 using FavoriteLiterature.Works.Data.Entities;
 using FavoriteLiterature.Works.Data.Repositories;
 using FavoriteLiterature.Works.Domain.Works.Requests.Commands;
+using FavoriteLiterature.Works.Domain.Works.Responses.Commands;
 using MediatR;
 
 namespace FavoriteLiterature.Works.Application.Handlers.Works.Commands;
 
-public sealed class CreateWorkCommandHandler : IRequestHandler<CreateWorkCommand>
+public sealed class CreateWorkCommandHandler : IRequestHandler<CreateWorkCommand, CreateWorkResponse>
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
 
-    public CreateWorkCommandHandler(IUnitOfWork unitOfWork)
+    public CreateWorkCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
 
-    public async Task Handle(CreateWorkCommand command, CancellationToken cancellationToken)
+    public async Task<CreateWorkResponse> Handle(CreateWorkCommand command, CancellationToken cancellationToken)
     {
-        var workData = new Work
-        {
-            Name = command.Name,
-            Description = command.Description,
-        };
+        var workData = _mapper.Map<Work>(command);
 
-        foreach (var authorId in command.Authors)
+        foreach (var authorId in command.AuthorIds)
         {
             var authorData = await _unitOfWork.AuthorsRepository.GetAsync(x =>
                     x.Id == authorId,
                 cancellationToken);
             if (authorData == null)
             {
-                throw new ArgumentException($"Author ({authorId}) is not exists!", nameof(authorId));
+                throw new ArgumentException($"{authorId} is not exists", nameof(authorId));
             }
 
             workData.Authors.Add(authorData);
         }
 
-        foreach (var genresId in command.Genres)
+        foreach (var genreId in command.GenreIds)
         {
             var genreData = await _unitOfWork.GenresRepository.GetAsync(x =>
-                    x.Id == genresId,
+                    x.Id == genreId,
                 cancellationToken);
             if (genreData == null)
             {
-                throw new ArgumentException($"Genre ({genresId}) is not exists!", nameof(genresId));
+                throw new ArgumentException($"{genreId} is not exist.", nameof(genreId));
             }
 
             workData.Genres.Add(genreData);
@@ -53,22 +53,6 @@ public sealed class CreateWorkCommandHandler : IRequestHandler<CreateWorkCommand
             () => _unitOfWork.WorksRepository.Add(workData)
         });
 
-        foreach (var fileNameWithExtension in command.Files)
-        {
-            var fileId = Path.GetFileNameWithoutExtension(fileNameWithExtension);
-            var attachmentTypeId = Path.GetExtension(fileNameWithExtension);
-
-            var attachmentData = new Attachment
-            {
-                WorkId = workData.Id, 
-                FileId = Guid.Parse(fileId),
-                AttachmentTypeId = attachmentTypeId
-            };
-
-            await _unitOfWork.BeginTransactionAsync(new[]
-            {
-                () => _unitOfWork.AttachmentsRepository.Add(attachmentData)
-            });
-        }
+        return new CreateWorkResponse(workData.Id);
     }
 }

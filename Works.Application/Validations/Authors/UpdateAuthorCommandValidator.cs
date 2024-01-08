@@ -7,9 +7,9 @@ public sealed class UpdateAuthorCommandValidator : AbstractValidator<UpdateAutho
 {
     public UpdateAuthorCommandValidator()
     {
-        RuleFor(x => x.Alias)
+        RuleFor(x => x.NickName)
             .MaximumLength(100)
-            .WithMessage(x => $"The {nameof(x.Alias)} must not exceed 100 characters.");
+            .WithMessage(x => $"The {nameof(x.NickName)} must not exceed 100 characters.");
 
         RuleFor(x => x.PublicEmail)
             .EmailAddress()

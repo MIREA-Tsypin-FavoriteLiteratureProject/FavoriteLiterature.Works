@@ -21,7 +21,7 @@ public sealed class DeleteGenreCommandHandler : IRequestHandler<DeleteGenreComma
         {
             throw new ArgumentException($"{command.Id} is not found.", nameof(command.Id));
         }
-        
+
         await _unitOfWork.BeginTransactionAsync(new List<Action>
         {
             () => _unitOfWork.GenresRepository.Remove(genreData)

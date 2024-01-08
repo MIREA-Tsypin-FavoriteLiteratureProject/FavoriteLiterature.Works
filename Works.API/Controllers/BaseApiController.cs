@@ -1,17 +1,21 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
+﻿using App.Metrics;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FavoriteLiterature.Works.Controllers;
 
-[ApiController, Authorize]
+[ApiController]
 [Route("api/[controller]")]
 public class BaseApiController : ControllerBase
 {
-    protected readonly IMediator _mediator;
+    protected readonly IMediator Mediator;
+    protected readonly IMetrics Metrics;
+    protected readonly ILogger Logger;
 
-    public BaseApiController(IMediator mediator)
+    public BaseApiController(IMediator mediator, IMetrics metrics, ILogger logger)
     {
-        _mediator = mediator;
+        Mediator = mediator;
+        Metrics = metrics;
+        Logger = logger;
     }
 }

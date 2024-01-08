@@ -1,0 +1,68 @@
+﻿services:
+  favorite_literature_works_database:
+    container_name: works_db
+    image: postgres:15.2-alpine
+    environment:
+      POSTGRES_DB: "fav_lit_db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "7000:5432"
+
+  prometheus:
+    hostname: prometheus
+    container_name: prometheus
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus:/prometheus/
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana-loki:
+    hostname: loki
+    container_name: grafana_loki
+    image: grafana/loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    healthcheck:
+      test: wget -q --tries=1 -O- http://localhost:3100/ready
+      interval: 3s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
+  grafana:
+    hostname: grafana
+    container_name: grafana
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+    depends_on:
+      grafana-loki:
+        condition: service_healthy
+      prometheus:
+        condition: service_started
+
+  jaeger:
+    container_name: jaeger
+    restart: unless-stopped
+    image: jaegertracing/all-in-one
+    environment:
+      COLLECTOR_OTLP_ENABLED: true
+      COLLECTOR_ZIPKIN_HOST_PORT: :9411
+    ports:
+      - 5775:5775/udp
+      - 6831:6831/udp
+      - 6832:6832/udp
+      - 5778:5778
+      - 16686:16686
+      - 14250:14250
+      - 14268:14268
+      - 14269:14269
+      - 4317:4317
+      - 4318:4318
+      - 9411:9411

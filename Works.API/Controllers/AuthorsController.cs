@@ -1,39 +1,64 @@
-using FavoriteLiterature.Works.Application.Policies;
+using App.Metrics;
 using FavoriteLiterature.Works.Domain.Authors.Requests.Commands;
 using FavoriteLiterature.Works.Domain.Authors.Requests.Queries;
 using FavoriteLiterature.Works.Domain.Authors.Responses.Commands;
 using FavoriteLiterature.Works.Domain.Authors.Responses.Queries;
+using FavoriteLiterature.Works.Metrics;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FavoriteLiterature.Works.Controllers;
 
 public sealed class AuthorsController : BaseApiController
 {
-    public AuthorsController(IMediator mediator) : base(mediator)
+    public AuthorsController(IMediator mediator, IMetrics metrics, ILogger<AuthorsController> logger) 
+        : base(mediator, metrics, logger)
     {
     }
 
+    /// <summary>
+    /// Получение всех авторов с механизмом пагинации
+    /// </summary>
     [HttpGet]
-    [AllowAnonymous]
     public async Task<GetAllAuthorsResponse> GetAllAsync([FromQuery] GetAllAuthorsQuery query, CancellationToken cancellationToken)
-        => await _mediator.Send(query, cancellationToken);
+        => await Mediator.Send(query, cancellationToken);
 
+    /// <summary>
+    /// Получение одного автора по его уникальному идентификатору
+    /// </summary>
+    /// <param name="id">Уникальный идентификатор автора</param>
     [HttpGet("{id:guid}")]
     public async Task<GetAuthorResponse> GetAsync(Guid id, CancellationToken cancellationToken)
-        => await _mediator.Send(new GetAuthorQuery(id), cancellationToken);
+        => await Mediator.Send(new GetAuthorQuery(id), cancellationToken);
 
+    /// <summary>
+    /// Создание автора
+    /// </summary>
+    /// <param name="command">Модель создания автора</param>
     [HttpPost]
-    [Authorize(Policy = nameof(RolePolicy.Critic))]
     public async Task<CreateAuthorResponse> CreateAsync(CreateAuthorCommand command, CancellationToken cancellationToken)
-        => await _mediator.Send(command, cancellationToken);
+    {
+        Metrics.Measure.Counter.Increment(MetricsRegistry.CreatedAuthorsCounter);
+        return await Mediator.Send(command, cancellationToken);
+    }
 
+    /// <summary>
+    /// Обновление существующего автора
+    /// </summary>
+    /// <param name="id">Уникальный идентификатор автора</param>
+    /// <param name="command">Модель обновления автора</param>
     [HttpPut("{id:guid}")]
-    [Authorize(Policy = nameof(RolePolicy.Author))]
     public async Task<UpdateAuthorResponse> UpdateAsync(Guid id, [FromBody] UpdateAuthorCommand command, CancellationToken cancellationToken)
     {
         command.Id = id;
-        return await _mediator.Send(command, cancellationToken);
+        return await Mediator.Send(command, cancellationToken);
     }
+
+    /// <summary>
+    /// Удаление существующего автора
+    /// </summary>
+    /// <param name="id">Уникальный идентификатор автора</param>
+    [HttpDelete("{id:guid}")]
+    public async Task<DeleteAuthorResponse> DeleteAsync(Guid id, CancellationToken cancellationToken)
+        => await Mediator.Send(new DeleteAuthorCommand(id), cancellationToken);
 }
