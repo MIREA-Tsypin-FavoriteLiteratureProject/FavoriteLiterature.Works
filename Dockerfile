@@ -1,27 +1,21 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-
+﻿FROM mcr.microsoft.com/dotnet/sdk:7.0 AS base
 WORKDIR /app
 COPY . .
 
-# Add a label for the image name
 LABEL maintainer="Tsypin Ilya <tsypin.i.p@mail.ru>"
 LABEL version="1.0"
 LABEL description="FavLit.Works project image"
 
-# Restore the NuGet packages
-RUN dotnet restore
+RUN dotnet restore --configfile ./Nuget.Config
+RUN dotnet build --no-restore
+RUN dotnet publish -o /app/publish
 
-# Build the application
-RUN dotnet build -c Release --no-restore
-
-# Publish the application
-RUN dotnet publish -c Release --no-build -o out
-
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
-
+FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine
 WORKDIR /app
-COPY --from=build /app/out .
+COPY --from=base /app/publish ./
 
+ENV ASPNETCORE_HTTP_PORT=80
+ENV ASPNETCORE_DEBUG_PORT=84
 EXPOSE 80
-
-ENTRYPOINT ["dotnet", "Works.API.dll"]
+EXPOSE 84
+ENTRYPOINT ["dotnet", "/app/FavoriteLiterature.Works.API.dll"]

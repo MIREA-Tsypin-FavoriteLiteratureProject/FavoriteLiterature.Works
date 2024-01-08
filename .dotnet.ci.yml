@@ -1,0 +1,39 @@
+default:
+  image: mcr.microsoft.com/dotnet/sdk:7.0-alpine
+  before_script:
+    - 'mkdir -p ~/.nuget/NuGet/'
+    - 'cp ./Nuget.Config ~/.nuget/NuGet/NuGet.Config'
+
+stages:
+  - build
+  - create image
+
+build:
+  stage: build
+  script:
+    - dotnet build
+
+test:
+  stage: build
+  script:
+    - dotnet test
+
+create image:
+  image: docker
+  stage: create image
+  services:
+    - 'docker:dind'
+  script:
+    - 'echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin'
+    - 'echo Container name: $CONTAINER_NAME'
+    - |
+      if [  $CI_COMMIT_BRANCH != master ]; then 
+        CONTAINER_VERSION=rc
+      else
+        CONTAINER_VERSION=release
+      fi
+    - 'CONTAINER_TAG=${CI_REGISTRY_IMAGE}:${CONTAINER_VERSION}'
+    - 'echo Container tag: $CONTAINER_TAG'
+    - 'docker build -t $CONTAINER_TAG -t ${CI_REGISTRY_IMAGE}:latest .'
+    - 'docker push $CONTAINER_TAG'
+    - 'docker push ${CI_REGISTRY_IMAGE}:latest'

@@ -7,3 +7,7 @@ riderModule.iml
 
 # Works.API backend
 **/Works.API/**/appsettings.Local.json
+**/Works.API/Logs
+
+
+**/Works.DevOps
