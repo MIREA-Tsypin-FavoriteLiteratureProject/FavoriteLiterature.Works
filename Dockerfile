@@ -6,7 +6,7 @@ LABEL maintainer="Tsypin Ilya <tsypin.i.p@mail.ru>"
 LABEL version="1.0"
 LABEL description="FavLit.Works project image"
 
-RUN dotnet restore --configfile ./Nuget.Config
+RUN dotnet restore --configfile ./NuGet.Config
 RUN dotnet build --no-restore
 RUN dotnet publish -o /app/publish
 
