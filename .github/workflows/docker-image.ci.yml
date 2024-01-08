@@ -24,7 +24,7 @@ jobs:
       - name: Prepare NuGet Config
         run: |
           mkdir -p ~/.nuget/NuGet/
-          cp ./Nuget.Config ~/.nuget/NuGet/NuGet.Config
+          cp ./NuGet.Config ~/.nuget/NuGet/NuGet.Config
 
       - name: Build
         run: dotnet build
