@@ -30,6 +30,7 @@ jobs:
         run: dotnet build
 
   create-and-push-image:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -50,7 +51,7 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          CONTAINER_TAG=${{ secrets.CI_REGISTRY_IMAGE }}:${CONTAINER_VERSION}
+          CONTAINER_TAG=${{ secrets.CI_REGISTRY_IMAGE }}:latest
           echo "Container tag: $CONTAINER_TAG"
           docker build -t $CONTAINER_TAG -t ${{ secrets.CI_REGISTRY_IMAGE }}:latest .
           docker push $CONTAINER_TAG
