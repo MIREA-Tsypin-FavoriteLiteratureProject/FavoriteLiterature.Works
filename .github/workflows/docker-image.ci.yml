@@ -29,15 +29,15 @@ jobs:
       - name: Build
         run: dotnet build
 
-  create_image:
+  create-and-push-image:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Login to Docker registry
-        run: echo ${{ secrets.CI_REGISTRY_PASSWORD }} | docker login -u ${{ secrets.CI_REGISTRY_USER }} ${{ secrets.CI_REGISTRY }} --password-stdin
+      - name: Login to Docker Hub
+        run: echo ${{ secrets.CI_REGISTRY_PASSWORD }} | docker login -u ${{ secrets.CI_REGISTRY_USER }} --password-stdin
 
       - name: Determine Container Version
         run: |
