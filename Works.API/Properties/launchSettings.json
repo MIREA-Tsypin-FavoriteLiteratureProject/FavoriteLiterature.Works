@@ -2,19 +2,16 @@
   "profiles": {
     "Development": {
       "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:15000;http://localhost:15001",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "Production": {
-      "commandName": "Project",
+      "dotnetRunMessages": "true",
       "launchBrowser": false,
-      "applicationUrl": "https://localhost:15000;http://localhost:15001",
+      "applicationUrl": "https://localhost:5000;http://localhost:5001",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "JAEGER_SERVICE_NAME": "FavoriteLiterature.Works.Api",
+        "JAEGER_AGENT_HOST": "localhost",
+        "JAEGER_AGENT_PORT": "6831",
+        "JAEGER_SAMPLER_TYPE": "const",
+        "JAEGER_SAMPLER_PARAM": "1"
       }
     }
   }

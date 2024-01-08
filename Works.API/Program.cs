@@ -28,6 +28,7 @@ builder.Host.UseMetricsWebTracking().UseMetrics(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddMetrics();
+builder.Services.AddJaeger();
 
 builder.AddPostgresDatabase();
 builder.AddRepositories();

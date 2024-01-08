@@ -6,6 +6,7 @@
     <PackageVersion Include="App.Metrics.Formatters.Prometheus" Version="4.3.0" />
     <PackageVersion Include="AutoMapper" Version="12.0.1" />
     <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageVersion Include="Jaeger" Version="1.0.3" />
     <PackageVersion Include="MediatR" Version="12.0.1" />
     <PackageVersion Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
@@ -14,8 +15,9 @@
     </PackageVersion>
     <PackageVersion Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
-    <PackageVersion Include="Serilog.AspNetCore" Version="8.0.0" />
-    <PackageVersion Include="Serilog.Sinks.Grafana.Loki" Version="8.2.0" />
+    <PackageVersion Include="OpenTracing.Contrib.NetCore" Version="0.9.0" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="7.0.0" />
+    <PackageVersion Include="Serilog.Sinks.Grafana.Loki" Version="7.1.1" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 </Project>
